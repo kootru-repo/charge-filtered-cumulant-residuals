@@ -1,0 +1,100 @@
+{
+  "audit_input": "screen_sector_cumulant_theorem.json",
+  "rederived_verdict": "STRONG_PASS",
+  "consistency_issues": [],
+  "headline": {
+    "n_total_obs": 630,
+    "n_pass": 630,
+    "n_fail": 0,
+    "max_violation": 0.0,
+    "n_positive_cells": 3,
+    "n_negative_cells": 3,
+    "avg_bound_positive": 3.9239402313465175,
+    "avg_bound_negative": 73.125,
+    "bound_neg_to_pos_ratio": 18.63560495030956,
+    "avg_delta_positive": 0.020122770417161623,
+    "avg_delta_negative": 0.375,
+    "delta_neg_to_pos_ratio": 18.635604950309563,
+    "n_negative_with_active_tau": 3
+  },
+  "per_cell": [
+    {
+      "name": "det_1100_n4N2",
+      "type": "positive",
+      "n": 4,
+      "N": 2,
+      "delta": 0.0,
+      "n_obs": 35,
+      "n_pass": 35,
+      "max_violation": 0.0,
+      "avg_bound": 0.0,
+      "bound_to_trivial_ratio": 0.0,
+      "operational_meaningfulness": "TIGHT"
+    },
+    {
+      "name": "weak_H2_theta005_n4N2",
+      "type": "positive",
+      "n": 4,
+      "N": 2,
+      "delta": 0.04991670832341408,
+      "n_obs": 35,
+      "n_pass": 35,
+      "max_violation": 0.0,
+      "avg_bound": 9.733758123065744,
+      "bound_to_trivial_ratio": 0.001292222478786607,
+      "operational_meaningfulness": "TIGHT"
+    },
+    {
+      "name": "highT_heis_n6N3",
+      "type": "positive",
+      "n": 6,
+      "N": 3,
+      "delta": 0.010451602928070791,
+      "n_obs": 245,
+      "n_pass": 245,
+      "max_violation": 0.0,
+      "avg_bound": 2.0380625709738087,
+      "bound_to_trivial_ratio": 0.0001385829151416519,
+      "operational_meaningfulness": "TIGHT"
+    },
+    {
+      "name": "fixedN_cat_n4N2",
+      "type": "negative",
+      "n": 4,
+      "N": 2,
+      "delta": 0.4999999999999999,
+      "n_obs": 35,
+      "n_pass": 35,
+      "max_violation": 0.0,
+      "avg_bound": 97.49999999999999,
+      "bound_to_trivial_ratio": 0.01294378698224852,
+      "operational_meaningfulness": "LOOSE"
+    },
+    {
+      "name": "static_H2_pi4_n4N2",
+      "type": "negative",
+      "n": 4,
+      "N": 2,
+      "delta": 0.5000000000000001,
+      "n_obs": 35,
+      "n_pass": 35,
+      "max_violation": 0.0,
+      "avg_bound": 97.50000000000001,
+      "bound_to_trivial_ratio": 0.012943786982248523,
+      "operational_meaningfulness": "LOOSE"
+    },
+    {
+      "name": "large_cat_n6N3",
+      "type": "negative",
+      "n": 6,
+      "N": 3,
+      "delta": 0.12499999999999994,
+      "n_obs": 245,
+      "n_pass": 245,
+      "max_violation": 0.0,
+      "avg_bound": 24.374999999999996,
+      "bound_to_trivial_ratio": 0.001657436137970847,
+      "operational_meaningfulness": "LOOSE"
+    }
+  ]
+}

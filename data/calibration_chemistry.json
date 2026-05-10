@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "generated": "2026-05-10",
+  "implementation_status": {
+    "hubbard": "implemented",
+    "h2_sto3g": "deferred (PySCF wheel build failed locally)",
+    "lih_sto3g": "deferred (PySCF wheel build failed locally)"
+  },
+  "framing": "Operational calibration of the residual certificate on a correlated 1D Hubbard ground state. NOT a theorem validation, NOT a complete chemistry-workflow benchmark, and NOT evidence that Delta_{r, U(1)} is small for general correlated chemistry states.",
+  "hubbard": [
+    {
+      "cell": "hubbard_1d_open",
+      "n_sites": 4,
+      "n_orb": 8,
+      "n_up": 2,
+      "n_dn": 2,
+      "U_over_t": 0.0,
+      "E_ground": -4.472135954999583,
+      "basis": "U=0 noninteracting single-particle eigenbasis",
+      "rotation_psi_norm": 1.0000000000000009,
+      "delta_cat": 3.0690794933495837e-16,
+      "delta_cat_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          1
+        ],
+        [
+          "a",
+          2
+        ],
+        [
+          "a",
+          3
+        ]
+      ],
+      "max_tau": 3.069079493349584e-16,
+      "max_tau_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          1
+        ],
+        [
+          "a",
+          2
+        ],
+        [
+          "a",
+          3
+        ]
+      ],
+      "B_eff_max": 0.0,
+      "eta_universal": NaN,
+      "B_r_universal": 105,
+      "M_r_universal": 26,
+      "n_catalog_words": 350
+    },
+    {
+      "cell": "hubbard_1d_open",
+      "n_sites": 4,
+      "n_orb": 8,
+      "n_up": 2,
+      "n_dn": 2,
+      "U_over_t": 1.0,
+      "E_ground": -3.5753656204474753,
+      "basis": "U=0 noninteracting single-particle eigenbasis",
+      "rotation_psi_norm": 0.999999999999999,
+      "delta_cat": 0.04897155171168793,
+      "delta_cat_word": [
+        [
+          "ad",
+          1
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          6
+        ]
+      ],
+      "max_tau": 0.04897155171168793,
+      "max_tau_word": [
+        [
+          "ad",
+          1
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          6
+        ]
+      ],
+      "B_eff_max": 1137.654917627328,
+      "eta_universal": 0.009523809523809523,
+      "B_r_universal": 105,
+      "M_r_universal": 26,
+      "n_catalog_words": 350
+    },
+    {
+      "cell": "hubbard_1d_open",
+      "n_sites": 4,
+      "n_orb": 8,
+      "n_up": 2,
+      "n_dn": 2,
+      "U_over_t": 4.0,
+      "E_ground": -1.9531453086845525,
+      "basis": "U=0 noninteracting single-particle eigenbasis",
+      "rotation_psi_norm": 0.9999999999999986,
+      "delta_cat": 0.17909066277212843,
+      "delta_cat_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "max_tau": 0.17909066277212843,
+      "max_tau_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "B_eff_max": 48.14553126463515,
+      "eta_universal": 0.009523809523809523,
+      "B_r_universal": 105,
+      "M_r_universal": 26,
+      "n_catalog_words": 350
+    },
+    {
+      "cell": "hubbard_1d_open",
+      "n_sites": 4,
+      "n_orb": 8,
+      "n_up": 2,
+      "n_dn": 2,
+      "U_over_t": 8.0,
+      "E_ground": -1.1171724133610055,
+      "basis": "U=0 noninteracting single-particle eigenbasis",
+      "rotation_psi_norm": 0.9999999999999991,
+      "delta_cat": 0.2644908322459866,
+      "delta_cat_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "max_tau": 0.2644908322459866,
+      "max_tau_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "B_eff_max": 74.56544974704207,
+      "eta_universal": 0.009523809523809523,
+      "B_r_universal": 105,
+      "M_r_universal": 26,
+      "n_catalog_words": 350
+    },
+    {
+      "cell": "hubbard_1d_open",
+      "n_sites": 4,
+      "n_orb": 8,
+      "n_up": 2,
+      "n_dn": 2,
+      "U_over_t": 16.0,
+      "E_ground": -0.5826356812427596,
+      "basis": "U=0 noninteracting single-particle eigenbasis",
+      "rotation_psi_norm": 1.0,
+      "delta_cat": 0.3058115723825947,
+      "delta_cat_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "max_tau": 0.3058115723825947,
+      "max_tau_word": [
+        [
+          "ad",
+          0
+        ],
+        [
+          "ad",
+          4
+        ],
+        [
+          "a",
+          3
+        ],
+        [
+          "a",
+          7
+        ]
+      ],
+      "B_eff_max": 11.841928326466508,
+      "eta_universal": 0.009523809523809523,
+      "B_r_universal": 105,
+      "M_r_universal": 26,
+      "n_catalog_words": 350
+    }
+  ]
+}
