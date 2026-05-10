@@ -15,6 +15,7 @@ def small_slater_state():
     product state.
     """
     from connected_layer_sector import determinant_state
+
     n_orb = 4
     rho = determinant_state(n_orb, [1, 1, 0, 0])
     return rho, n_orb

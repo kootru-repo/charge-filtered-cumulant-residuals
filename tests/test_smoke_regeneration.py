@@ -27,8 +27,7 @@ CALIB = ROOT / "data" / "calibration_chemistry.json"
 
 def _hubbard_at(n_sites: int, U: float) -> dict:
     n_orb = 2 * n_sites
-    psi, e0 = hubbard_ground_state(n_sites, t=1.0, U=U,
-                                   n_up=n_sites // 2, n_dn=n_sites // 2)
+    psi, e0 = hubbard_ground_state(n_sites, t=1.0, U=U, n_up=n_sites // 2, n_dn=n_sites // 2)
     eps, V_mat = tight_binding_eigenbasis(n_sites, t=1.0)
     W_full = np.zeros((n_orb, n_orb))
     W_full[:n_sites, :n_sites] = V_mat

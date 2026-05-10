@@ -21,7 +21,7 @@ def determinant_state(n: int, occ_bits) -> np.ndarray:
     for i, b in enumerate(occ_bits):
         if b:
             idx |= 1 << (n - 1 - i)
-    psi = np.zeros(2 ** n, dtype=complex)
+    psi = np.zeros(2**n, dtype=complex)
     psi[idx] = 1.0
     return np.outer(psi, psi.conj())
 
@@ -30,6 +30,7 @@ def determinant_state(n: int, occ_bits) -> np.ndarray:
 # 1D Hubbard chain
 # ---------------------------------------------------------------------
 
+
 def hubbard_H(n_sites: int, t: float, U: float) -> np.ndarray:
     """Open-boundary 1D Hubbard Hamiltonian on 2*n_sites JW spin-orbitals.
 
@@ -37,7 +38,7 @@ def hubbard_H(n_sites: int, t: float, U: float) -> np.ndarray:
     qubits n_sites..2*n_sites-1.
     """
     n_orb = 2 * n_sites
-    dim = 2 ** n_orb
+    dim = 2**n_orb
     H = np.zeros((dim, dim), dtype=complex)
     # Hopping
     for i in range(n_sites - 1):
@@ -60,21 +61,22 @@ def two_spin_fixed_N_projector(n_sites: int, n_up: int, n_dn: int) -> np.ndarray
     """Projector onto the fixed-(N_up, N_dn) sector for the spin-orbital
     ordering used by `hubbard_H`."""
     n_orb = 2 * n_sites
-    dim = 2 ** n_orb
+    dim = 2**n_orb
     proj = np.zeros((dim, dim), dtype=complex)
     mask_up = (1 << n_sites) - 1
     mask_dn = ((1 << n_orb) - 1) ^ mask_up
     for idx in range(dim):
-        if (
-            bin(idx & mask_up).count("1") == n_up
-            and bin(idx & mask_dn).count("1") == n_dn
-        ):
+        if bin(idx & mask_up).count("1") == n_up and bin(idx & mask_dn).count("1") == n_dn:
             proj[idx, idx] = 1.0
     return proj
 
 
 def hubbard_ground_state(
-    n_sites: int, t: float, U: float, n_up: int, n_dn: int,
+    n_sites: int,
+    t: float,
+    U: float,
+    n_up: int,
+    n_dn: int,
 ) -> tuple[np.ndarray, float]:
     """Return (psi_GS, E_GS) on the 2*n_sites JW Hilbert space."""
     H = hubbard_H(n_sites, t, U)
@@ -87,6 +89,7 @@ def hubbard_ground_state(
 # ---------------------------------------------------------------------
 # U=0 noninteracting single-particle eigenbasis
 # ---------------------------------------------------------------------
+
 
 def tight_binding_eigenbasis(n_sites: int, t: float = 1.0):
     """Open-boundary 1D tight-binding single-particle eigenbasis.
@@ -102,9 +105,7 @@ def tight_binding_eigenbasis(n_sites: int, t: float = 1.0):
     n = n_sites
     sites = np.arange(1, n + 1)
     modes = np.arange(1, n + 1)
-    V_mat = np.sqrt(2.0 / (n + 1)) * np.sin(
-        np.outer(sites, modes) * np.pi / (n + 1)
-    )
+    V_mat = np.sqrt(2.0 / (n + 1)) * np.sin(np.outer(sites, modes) * np.pi / (n + 1))
     eps = -2.0 * t * np.cos(modes * np.pi / (n + 1))
     return eps, V_mat
 
@@ -119,7 +120,7 @@ def fermionic_orbital_rotation(W_mat: np.ndarray, n_orb: int) -> np.ndarray:
     quantization.
     """
     K_one_body = logm(W_mat)
-    dim = 2 ** n_orb
+    dim = 2**n_orb
     K_op = np.zeros((dim, dim), dtype=complex)
     for p in range(n_orb):
         ap_dag = jw_creation(n_orb, p)

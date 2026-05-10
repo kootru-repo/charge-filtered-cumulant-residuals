@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import hashlib
 
-
 _MASK_64 = (1 << 64) - 1
 
 

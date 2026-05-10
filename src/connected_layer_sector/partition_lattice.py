@@ -31,6 +31,7 @@ def _word_moment(rho, word, n):
     if not word:
         return 1.0 + 0j
     import numpy as np
+
     return complex(np.trace(rho @ word_matrix(word, n)))
 
 

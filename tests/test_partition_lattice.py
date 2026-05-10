@@ -25,8 +25,7 @@ def test_partitions_disjoint_and_cover():
         for pi in set_partitions(range(m)):
             seen = set()
             for block in pi:
-                assert not (set(block) & seen), \
-                    f"overlap in partition {pi} of [{m}]"
+                assert not (set(block) & seen), f"overlap in partition {pi} of [{m}]"
                 seen.update(block)
             assert seen == items, f"miss in partition {pi} of [{m}]"
 
@@ -34,18 +33,12 @@ def test_partitions_disjoint_and_cover():
 def test_singletons_partition_present():
     """For every m, Pi_m contains exactly one all-singleton partition."""
     for m in range(1, 6):
-        n_singletons = sum(
-            1 for pi in set_partitions(range(m))
-            if all(len(b) == 1 for b in pi)
-        )
+        n_singletons = sum(1 for pi in set_partitions(range(m)) if all(len(b) == 1 for b in pi))
         assert n_singletons == 1
 
 
 def test_top_partition_present():
     """For every m, Pi_m contains exactly one one-block partition."""
     for m in range(1, 6):
-        n_top = sum(
-            1 for pi in set_partitions(range(m))
-            if len(pi) == 1
-        )
+        n_top = sum(1 for pi in set_partitions(range(m)) if len(pi) == 1)
         assert n_top == 1

@@ -68,15 +68,15 @@ def enumerate_chemistry_catalog(
         if len(catalog) >= cap_hopping:
             break
 
-    # a^dag_i a^dag_j a_k a_l + h.c.  (double excitation)
+    # a^dag_i a^dag_j a_k a_m + h.c.  (double excitation)
     pairs_in = list(combinations(sites, 2))
-    for (i, j) in pairs_in:
-        for (k, l) in pairs_in:
-            if {i, j} & {k, l}:
+    for i, j in pairs_in:
+        for k, m in pairs_in:
+            if {i, j} & {k, m}:
                 continue
-            w = (("ad", i), ("ad", j), ("a", k), ("a", l))
-            w_dag = (("ad", l), ("ad", k), ("a", j), ("a", i))
-            catalog.append(("doublex", (i, j, k, l), w, 1.0, w_dag))
+            w = (("ad", i), ("ad", j), ("a", k), ("a", m))
+            w_dag = (("ad", m), ("ad", k), ("a", j), ("a", i))
+            catalog.append(("doublex", (i, j, k, m), w, 1.0, w_dag))
             if len(catalog) >= cap_double:
                 break
         if len(catalog) >= cap_double:

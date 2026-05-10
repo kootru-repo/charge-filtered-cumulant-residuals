@@ -26,6 +26,17 @@ Public API (kept small intentionally; helpers are module-private):
     evaluate_catalog
 """
 
+from connected_layer_sector.audit import evaluate_catalog
+from connected_layer_sector.catalog import enumerate_chemistry_catalog
+from connected_layer_sector.constants import (
+    B_r_const,
+    M_r_const,
+    charge_filtered_polynomial,
+)
+from connected_layer_sector.moments import (
+    tau_word,
+    word_moment,
+)
 from connected_layer_sector.operators import (
     fixed_N_projector,
     jw_annihilation,
@@ -38,16 +49,6 @@ from connected_layer_sector.partition_lattice import (
     ordered_cumulant,
     set_partitions,
 )
-from connected_layer_sector.moments import (
-    tau_word,
-    word_moment,
-)
-from connected_layer_sector.constants import (
-    B_r_const,
-    M_r_const,
-    charge_filtered_polynomial,
-)
-from connected_layer_sector.catalog import enumerate_chemistry_catalog
 from connected_layer_sector.seeds import deterministic_seed
 from connected_layer_sector.states import (
     determinant_state,
@@ -55,7 +56,6 @@ from connected_layer_sector.states import (
     hubbard_ground_state,
     tight_binding_eigenbasis,
 )
-from connected_layer_sector.audit import evaluate_catalog
 
 __version__ = "0.1.0"
 

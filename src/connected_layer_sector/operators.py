@@ -42,7 +42,7 @@ def number_op_site(n: int, i: int) -> np.ndarray:
 
 def fixed_N_projector(n: int, N: int) -> np.ndarray:
     """Projector onto the fixed-particle-number sector of dimension binom(n, N)."""
-    dim = 2 ** n
+    dim = 2**n
     proj = np.zeros((dim, dim), dtype=complex)
     for idx in range(dim):
         if bin(idx).count("1") == N:
@@ -83,7 +83,7 @@ def letter_matrix(letter, n: int) -> np.ndarray:
 def word_matrix(word, n: int) -> np.ndarray:
     """Convert a word (tuple of letters) to its ordered product matrix."""
     if not word:
-        return np.eye(2 ** n, dtype=complex)
+        return np.eye(2**n, dtype=complex)
     out = letter_matrix(word[0], n)
     for L in word[1:]:
         out = out @ letter_matrix(L, n)
