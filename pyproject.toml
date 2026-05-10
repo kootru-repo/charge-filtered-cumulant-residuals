@@ -56,12 +56,6 @@ Repository = "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
 Issues = "https://github.com/kootru-repo/charge-filtered-cumulant-residuals/issues"
 
 [project.scripts]
-# Console entry points preserve existing CLI invocations after the
-# scripts → package refactor.
-cls-screen-r4 = "connected_layer_sector.cli:screen_r4"
-cls-screen-extended = "connected_layer_sector.cli:screen_extended"
-cls-screen-r5 = "connected_layer_sector.cli:screen_r5"
-cls-audit = "connected_layer_sector.cli:audit"
 cls-calibrate = "connected_layer_sector.cli:calibrate"
 cls-manifest = "connected_layer_sector.cli:generate_manifest"
 
