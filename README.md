@@ -21,7 +21,7 @@ This repository reproduces every numerical claim in the manuscript. Math content
 
 ### Binder
 
-Click the Binder badge above. Open `notebooks/00_overview.ipynb` and follow the numbered notebook order (00 → 05). Each notebook ends with `assert` cells a reviewer can run to confirm the headline claim of that section.
+Click the Binder badge above. Open `notebooks/00_overview.ipynb` and follow the numbered notebook order (00 → 05). Each notebook ends with `assert` cells that confirm the headline claim of that section.
 
 ### Local
 
