@@ -1,8 +1,4 @@
-"""Console entry points referenced by pyproject.toml.
-
-These are thin wrappers that preserve the existing script-style CLIs after
-the migration to an importable package.
-"""
+"""Console entry points referenced by pyproject.toml."""
 
 from __future__ import annotations
 
@@ -10,33 +6,6 @@ import argparse
 import json
 import time
 from pathlib import Path
-
-
-def screen_r4() -> None:
-    """Stub for the r=4 implementation audit pipeline.
-
-    The full pipeline lives in the legacy script
-    `code/screen_sector_cumulant_theorem.py` in the manuscript working dir.
-    This package's catalog evaluation is exposed as
-    `connected_layer_sector.evaluate_catalog`; full screen migration is
-    deferred until the test suite covers the new modules.
-    """
-    raise NotImplementedError(
-        "screen_r4 entry point: pipeline migration pending. "
-        "Use connected_layer_sector.evaluate_catalog directly."
-    )
-
-
-def screen_extended() -> None:
-    raise NotImplementedError("screen_extended entry point: migration pending.")
-
-
-def screen_r5() -> None:
-    raise NotImplementedError("screen_r5 entry point: migration pending.")
-
-
-def audit() -> None:
-    raise NotImplementedError("audit entry point: migration pending.")
 
 
 def calibrate() -> None:
