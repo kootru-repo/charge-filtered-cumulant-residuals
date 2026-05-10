@@ -55,9 +55,7 @@ def test_block_refined_constants_at_r4():
     """Cor 1: B_hat^charge_4 = {1, 1, 3, 1, 5} on the five catalog word types."""
     for label, word, expected in CATALOG_EXAMPLES:
         actual = block_refined_constant(word, r=4)
-        assert actual == expected, (
-            f"{label}: B_hat^charge_4 = {actual}, manuscript = {expected}"
-        )
+        assert actual == expected, f"{label}: B_hat^charge_4 = {actual}, manuscript = {expected}"
 
 
 def test_block_refined_constants_at_r5_unchanged():
@@ -65,6 +63,4 @@ def test_block_refined_constants_at_r5_unchanged():
     partition of [m <= 4] has a block of size 5."""
     for label, word, expected in CATALOG_EXAMPLES:
         actual = block_refined_constant(word, r=5)
-        assert actual == expected, (
-            f"{label}: B_hat^charge_5 = {actual}, manuscript = {expected}"
-        )
+        assert actual == expected, f"{label}: B_hat^charge_5 = {actual}, manuscript = {expected}"

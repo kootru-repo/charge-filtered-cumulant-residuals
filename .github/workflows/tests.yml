@@ -41,10 +41,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.11", "3.13"]
-        exclude:
-          # 3.13 wheels not yet universal for scipy on macOS in some indexes;
-          # restrict if needed by uncommenting:
-          # - { os: macos-latest, python-version: "3.13" }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

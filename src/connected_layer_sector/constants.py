@@ -106,7 +106,7 @@ def _Q_polynomial(h: int, z: int) -> list[float]:
     h_fact = math.factorial(h)
     z_fact = math.factorial(z)
     for j in range(z // 2 + 1):
-        coeff = h_fact * z_fact / (math.factorial(z - 2 * j) * math.factorial(j) * (2 ** j))
+        coeff = h_fact * z_fact / (math.factorial(z - 2 * j) * math.factorial(j) * (2**j))
         out[h + z - j] += coeff
     return out
 

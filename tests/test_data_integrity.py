@@ -43,13 +43,16 @@ def test_manifest_provenance_fields():
     assert m["schema_version"] >= 2
 
 
-@pytest.mark.parametrize("rel_path", [
-    "data/screen_sector_cumulant_theorem.json",
-    "data/screen_sector_cumulant_extended.json",
-    "data/screen_sector_audit_r5.json",
-    "data/audit_sector_cumulant_results.json",
-    "data/calibration_chemistry.json",
-])
+@pytest.mark.parametrize(
+    "rel_path",
+    [
+        "data/screen_sector_cumulant_theorem.json",
+        "data/screen_sector_cumulant_extended.json",
+        "data/screen_sector_audit_r5.json",
+        "data/audit_sector_cumulant_results.json",
+        "data/calibration_chemistry.json",
+    ],
+)
 def test_deposited_json_sha256(rel_path):
     """Each deposited JSON's SHA256 matches the manifest entry."""
     m = _load_manifest()
@@ -60,6 +63,5 @@ def test_deposited_json_sha256(rel_path):
     expected = m["files"][rel_path]["sha256"]
     actual = hashlib.sha256(abs_path.read_bytes()).hexdigest()
     assert actual == expected, (
-        f"sha256 mismatch for {rel_path}: "
-        f"manifest={expected[:16]}... actual={actual[:16]}..."
+        f"sha256 mismatch for {rel_path}: manifest={expected[:16]}... actual={actual[:16]}..."
     )

@@ -45,10 +45,8 @@ def calibrate() -> None:
         description="Hubbard correlated-state calibration of the residual certificate.",
     )
     parser.add_argument("--n-sites", type=int, default=4)
-    parser.add_argument("--Ut", type=float, nargs="+",
-                        default=[0.0, 1.0, 4.0, 8.0, 16.0])
-    parser.add_argument("--out", type=str,
-                        default="data/calibration_chemistry.json")
+    parser.add_argument("--Ut", type=float, nargs="+", default=[0.0, 1.0, 4.0, 8.0, 16.0])
+    parser.add_argument("--out", type=str, default="data/calibration_chemistry.json")
     args = parser.parse_args()
 
     import numpy as np
@@ -75,17 +73,19 @@ def calibrate() -> None:
         psi_rot = psi_rot / np.linalg.norm(psi_rot)
         rho_rot = np.outer(psi_rot, psi_rot.conj())
         metrics = evaluate_catalog(rho_rot, n_orb, r=4)
-        rows.append({
-            "cell": "hubbard_1d_open",
-            "n_sites": n_sites,
-            "n_orb": n_orb,
-            "n_up": n_sites // 2,
-            "n_dn": n_sites // 2,
-            "U_over_t": U,
-            "E_ground": E0,
-            "basis": "U=0 noninteracting single-particle eigenbasis",
-            **metrics,
-        })
+        rows.append(
+            {
+                "cell": "hubbard_1d_open",
+                "n_sites": n_sites,
+                "n_orb": n_orb,
+                "n_up": n_sites // 2,
+                "n_dn": n_sites // 2,
+                "U_over_t": U,
+                "E_ground": E0,
+                "basis": "U=0 noninteracting single-particle eigenbasis",
+                **metrics,
+            }
+        )
 
     out = {
         "schema_version": 1,
@@ -139,14 +139,24 @@ def generate_manifest() -> None:
     git_tag = "unknown"
     git_commit = "unknown"
     try:
-        git_tag = subprocess.run(
-            ["git", "describe", "--tags", "--always"],
-            capture_output=True, text=True, check=False,
-        ).stdout.strip() or "unknown"
-        git_commit = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
-            capture_output=True, text=True, check=False,
-        ).stdout.strip() or "unknown"
+        git_tag = (
+            subprocess.run(
+                ["git", "describe", "--tags", "--always"],
+                capture_output=True,
+                text=True,
+                check=False,
+            ).stdout.strip()
+            or "unknown"
+        )
+        git_commit = (
+            subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                capture_output=True,
+                text=True,
+                check=False,
+            ).stdout.strip()
+            or "unknown"
+        )
     except FileNotFoundError:
         pass
 
