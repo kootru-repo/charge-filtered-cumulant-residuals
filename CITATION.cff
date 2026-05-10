@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "charge-filtered-cumulant-residuals: reproducibility envelope"
+message: "If you use this code or data, please cite the manuscript and the Zenodo deposit below."
+type: software
+authors:
+  - family-names: Craton
+    given-names: Andrew
+    affiliation: "Kootru Labs"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # author to fill at submission
+repository-code: "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
+license:
+  - MIT          # source code (src/, tests/, root config)
+  - CC-BY-4.0    # notebooks, data, docs
+version: "0.1.0"
+date-released: "2026-05-10"
+doi: "10.5281/zenodo.XXXXXXX"  # author to fill once Zenodo deposit is live
+references:
+  - type: article
+    title: "Charge-filtered cumulant residual bounds for charge-neutral fermionic-word observables on U(1)-invariant states"
+    authors:
+      - family-names: Craton
+        given-names: Andrew
+        affiliation: "Kootru Labs"
+    year: 2026
+    # doi: "10.NNNN/preprint-or-journal-DOI"  # author to fill at submission

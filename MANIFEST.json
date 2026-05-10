@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "generated": "2026-05-10",
+  "git_tag": "unknown",
+  "git_commit": "unknown",
+  "python_version": "3.12.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "deterministic_seed_policy": "SHA256(label) truncated to 64-bit unsigned int via connected_layer_sector.deterministic_seed",
+  "files": {
+    "data/audit_sector_cumulant_results.json": {
+      "sha256": "d5e6ef18e7a1f0ad6480e1bd4bc302da7f46a30227cd86b0d5741f1d08034f6f",
+      "size": 2698
+    },
+    "data/calibration_chemistry.json": {
+      "sha256": "993ba3af79eb7dd32167fec72cdb0a1d7d6c0bd20cb8b59eb036fc602b3097b9",
+      "size": 5717
+    },
+    "data/screen_sector_audit_r5.json": {
+      "sha256": "a3d2e780dde84fc1fd9f448590686ea195d4fc8f6fd83ad3938aa65b7a43ebf3",
+      "size": 4857
+    },
+    "data/screen_sector_cumulant_extended.json": {
+      "sha256": "f650e12af863ef6522c824015eeea48a8bfa75bca4eee77beff61472c1d1dc6c",
+      "size": 5613
+    },
+    "data/screen_sector_cumulant_theorem.json": {
+      "sha256": "b7310f5e1d425bad97bd23d5d464c040b09b92afbc1c3444a9909807a3ad895b",
+      "size": 3188
+    }
+  }
+}
