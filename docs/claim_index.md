@@ -1,6 +1,6 @@
 # Claim index
 
-Each numerical claim in the manuscript is mapped to a notebook, a test, and a deposited data file (when applicable). Reviewers can verify any claim by following the corresponding row.
+Each numerical claim in the manuscript is mapped to a notebook, a test, and a deposited data file (when applicable). Any claim can be verified by following the corresponding row.
 
 ## Theorem and constant claims
 
