@@ -22,6 +22,21 @@ def enumerate_chemistry_catalog(
 ):
     """Enumerate the chemistry-motivated catalog at orbital count n.
 
+    The full unconstrained chemistry catalog at n=8 has
+        C(8,3) + C(8,4) + 8*7*6 + ...
+    entries; the audit ran on a deterministic subset of 3679 catalog
+    observables across 26 fixed-N states (see the manuscript and the
+    deposited `data/screen_sector_*.json` JSONs). For notebook
+    execution we cap the triple-index hopping sweep at
+    `cap_hopping` and the four-index double-excitation sweep at
+    `cap_double` so this enumeration finishes in under a second at
+    n=8 while still covering all five catalog WORD TYPES (the
+    Corollary 1 constants depend on word type, not on the number of
+    distinct site placements enumerated). The audit JSONs and their
+    SHA256 entries in MANIFEST.json record the full 3679 instances;
+    `evaluate_catalog` here is meant for fast scale checks, not for
+    reproducing the audit headline count.
+
     Parameters
     ----------
     n : int

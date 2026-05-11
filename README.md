@@ -47,7 +47,8 @@ Hashes the five deposited JSONs in `data/` against the SHA256 entries in `MANIFE
 ```
 src/connected_layer_sector/   importable Python package
 notebooks/                    six numbered notebooks, claim-indexed to manuscript sections
-tests/                        pytest suite (~50 tests, >90% coverage target)
+tests/                        pytest suite (39 tests at present, >90% coverage target)
+tests/mutation_check.py       optional: 10-mutation sanity check on the implementation
 data/                         five deposited JSON outputs + MANIFEST.json
 docs/                         claim_index.md (manuscript claim → notebook + test + data)
 binder/                       environment.yml + runtime.txt + postBuild
@@ -69,3 +70,24 @@ If you use this code or data, please cite the manuscript and the Zenodo deposit.
 1. Open `docs/claim_index.md`. Find the claim by manuscript section.
 2. The table tells you which notebook to open, which test to run, and which JSON to inspect.
 3. Each notebook ends with one or more `assert` cells that verify the claim numerically.
+
+## Scope
+
+This repository is the **operational reproducibility envelope**: it
+reproduces every quoted numerical value in the manuscript, runs in
+under five minutes locally or in Binder, and exposes a thin
+pip-installable API so any reader can call the primitives directly.
+
+It is intentionally NOT an adversarial verification surface. The
+following are out of scope here:
+
+- adversarial state-search optimization for bound saturation,
+- mutation testing of the implementation modules beyond the
+  lightweight `tests/mutation_check.py` sanity harness,
+- cross-validation against an independent symbolic-arithmetic oracle,
+- large-$n$ ($n \ge 5$) stress on the three-theorem chain,
+- the diagnostic-UCB Monte-Carlo coverage simulation.
+
+The manuscript's algebraic theorems are proved in the paper itself.
+This repository confirms the deposited numerical values are
+recomputable; it does not attempt to falsify the proofs.

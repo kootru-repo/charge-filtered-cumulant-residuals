@@ -115,11 +115,34 @@ def fermionic_orbital_rotation(W_mat: np.ndarray, n_orb: int) -> np.ndarray:
     implements the one-body orbital rotation
         a_p^dag -> sum_q W_mat[q, p] a_q^dag.
 
-    For a real orthogonal W_mat, V is constructed numerically by exponentiating
-    the one-body anti-Hermitian generator K = log W in fermionic second
-    quantization.
+    For a real orthogonal W_mat, V is constructed numerically by
+    exponentiating the one-body anti-Hermitian generator K = log W in
+    fermionic second quantization.
+
+    `scipy.linalg.logm` is numerically fragile on orthogonal matrices
+    with eigenvalue near -1; this function checks that W is unitary and
+    that the principal logarithm is anti-Hermitian before exponentiating,
+    so an unsafe input produces a clear error rather than silent drift.
     """
+    if W_mat.shape != (n_orb, n_orb):
+        raise ValueError(
+            f"W_mat must be shape ({n_orb}, {n_orb}); got {W_mat.shape}"
+        )
+    eye = np.eye(n_orb, dtype=W_mat.dtype)
+    unitarity_err = np.linalg.norm(W_mat @ W_mat.conj().T - eye)
+    if unitarity_err > 1e-10:
+        raise ValueError(
+            "W_mat must be unitary; "
+            f"||W W^* - I|| = {unitarity_err:.2e}"
+        )
     K_one_body = logm(W_mat)
+    anti_herm_err = np.linalg.norm(K_one_body + K_one_body.conj().T)
+    if anti_herm_err > 1e-8:
+        raise ValueError(
+            "logm(W_mat) is not anti-Hermitian; W_mat may have an "
+            "eigenvalue near -1 (logm branch ambiguity). "
+            f"||K + K^*|| = {anti_herm_err:.2e}"
+        )
     dim = 2**n_orb
     K_op = np.zeros((dim, dim), dtype=complex)
     for p in range(n_orb):

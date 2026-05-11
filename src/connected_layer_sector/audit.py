@@ -56,8 +56,12 @@ def evaluate_catalog(rho: np.ndarray, n_orb: int, *, r: int = 4) -> dict:
 
     if delta_cat > 1e-14:
         eta_universal = max_tau / (B_r * delta_cat)
+        eta_well_defined = True
     else:
+        # Delta = 0 makes the ratio degenerate; we report NaN but flag it
+        # so downstream readers can filter explicitly rather than guessing.
         eta_universal = math.nan
+        eta_well_defined = False
 
     return {
         "delta_cat": float(delta_cat),
