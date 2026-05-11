@@ -54,16 +54,29 @@ def test_regenerate_hubbard_u0_baseline():
 
 def test_regenerate_hubbard_u1_matches_deposit():
     """Run the pipeline at U=1 and compare to the deposited calibration
-    row, excluding volatile fields. Tolerance: 1e-9 on each metric."""
+    row, excluding volatile fields. Tolerance: 1e-9 on each metric.
+
+    Fails (does not silent-skip) if the deposit or its U/t=1 row is
+    missing -- those conditions indicate a broken deposit, not an
+    expected runtime state.
+    """
+    import pytest
+
     if not CALIB.exists():
-        return  # no deposit to compare against
+        pytest.fail(
+            f"Calibration deposit missing at {CALIB}; "
+            "test_data_integrity should have caught this first"
+        )
     rows = json.loads(CALIB.read_text(encoding="utf-8"))["hubbard"]
     deposit = next(
         (r for r in rows if r["U_over_t"] == 1.0 and r["n_sites"] == 4),
         None,
     )
     if deposit is None:
-        return  # deposit missing this cell; skip rather than fail
+        pytest.fail(
+            "Calibration deposit missing the U/t=1, n_sites=4 row; "
+            "regenerate with `cls-calibrate --Ut 0 1 4 8 16`"
+        )
 
     fresh = _hubbard_at(n_sites=4, U=1.0)
     for key in ("E_ground", "delta_cat", "max_tau"):

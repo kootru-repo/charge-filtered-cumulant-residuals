@@ -25,9 +25,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
-      - name: Generate manifest (so test_data_integrity has something to check)
-        run: cls-manifest
       - name: Run pytest with coverage
+        # MANIFEST.json is committed at deposit time; the integrity test
+        # hashes data/ against it. We intentionally do NOT regenerate the
+        # manifest in CI -- doing so would make the data-integrity test
+        # tautological (hash today's files against today's manifest).
         run: pytest --cov=connected_layer_sector --cov-report=term-missing -q
 
   compatibility:
@@ -52,8 +54,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
-      - name: Generate manifest
-        shell: bash
-        run: cls-manifest
       - name: Run unit tests (no notebooks)
+        # Same reasoning as primary: do not regenerate manifest in CI.
         run: pytest -q --ignore=tests/test_smoke_regeneration.py
