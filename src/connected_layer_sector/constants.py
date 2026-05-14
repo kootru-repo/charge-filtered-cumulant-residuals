@@ -135,3 +135,58 @@ def B_charge_r(h: int, z: int, r: int) -> float:
     Mr = M_r_const(r)
     P, Q = charge_filtered_polynomial(h, z)
     return (evaluate_polynomial(P, Mr) - evaluate_polynomial(Q, Mr)) / Mr
+
+
+def Bhat_charge_r(h: int, z: int, r: int) -> float:
+    """Block-refined charge-filtered constant for a word with charge multiset
+    (h+, h-, z*0).
+
+    Manuscript definition (Theorem 3): each contributing partition's
+    contribution is the minimum over the choice of distinguished large
+    block $B^*$ of $\\prod_{B \\ne B^*} M_{|B|}$:
+
+    .. math::
+        \\widehat B^{\\mathrm{charge}}_r(W) =
+        \\sum_{\\pi \\in \\Pi^{nl}_{|W|}(W)}
+        \\;\\min_{B^* \\in \\pi,\\, |B^*| > 2}
+        \\;\\prod_{B \\in \\pi,\\, B \\ne B^*} M_{|B|}.
+
+    Here $\\Pi^{nl}_m(W)$ are neutral-block partitions of [m] with at least
+    one block of size > 2. The min over choices of $B^*$ produces the
+    tightest charge-filtered constant by exploiting the fact that one
+    distinguished large block can serve as the "envelope-absorbing" block
+    while the rest are bounded by the partition-lattice Mobius constants
+    $M_{|B|}$.
+
+    Closed-form values on the chemistry catalog at r = 4:
+      h=0, z=3 (n n n):                 1
+      h=1, z=1 (a_dag a n):             1
+      h=1, z=2 (a_dag a n n):           3
+      h=2, z=0 (a_dag a_dag a a):       1
+      h=0, z=4 (n n n n):               5
+    """
+    if h == 0 and z == 0:
+        return 0.0
+    m = 2 * h + z
+    # Representative charge sequence: h positives, h negatives, z zeros.
+    charges = [+1] * h + [-1] * h + [0] * z
+    total = 0.0
+    for pi in set_partitions(range(m)):
+        if not any(len(b) > 2 for b in pi):
+            continue
+        # Neutral-block filter.
+        if any(sum(charges[i] for i in block) != 0 for block in pi):
+            continue
+        # Min over distinguished-large-block choice of product over non-B*.
+        large_blocks = [b for b in pi if len(b) > 2]
+        best = None
+        for B_star in large_blocks:
+            prod = 1.0
+            for B in pi:
+                if B is B_star:
+                    continue
+                prod *= M_r_const(len(B))
+            if best is None or prod < best:
+                best = prod
+        total += float(best)
+    return total

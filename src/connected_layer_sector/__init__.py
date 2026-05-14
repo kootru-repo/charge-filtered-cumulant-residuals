@@ -29,7 +29,9 @@ Public API (kept small intentionally; helpers are module-private):
 from connected_layer_sector.audit import evaluate_catalog
 from connected_layer_sector.catalog import enumerate_chemistry_catalog
 from connected_layer_sector.constants import (
+    B_charge_r,
     B_r_const,
+    Bhat_charge_r,
     M_r_const,
     charge_filtered_polynomial,
 )
@@ -60,7 +62,9 @@ from connected_layer_sector.states import (
 __version__ = "0.1.0"
 
 __all__ = [
+    "B_charge_r",
     "B_r_const",
+    "Bhat_charge_r",
     "M_r_const",
     "charge_filtered_polynomial",
     "deterministic_seed",
