@@ -13,7 +13,7 @@ authors = [
     { name = "Andrew Craton", email = "acraton@kootru.com" },
 ]
 maintainers = [
-    { name = "Kootru Labs (DBA of Kootru LLC)", email = "acraton@kootru.com" },
+    { name = "Kootru Labs", email = "acraton@kootru.com" },
 ]
 keywords = [
     "quantum-information",
@@ -57,7 +57,7 @@ notebooks = [
 [project.urls]
 Repository = "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
 Issues = "https://github.com/kootru-repo/charge-filtered-cumulant-residuals/issues"
-Organization = "https://www.kootru.com"
+Organization = "https://labs.kootru.com"
 DOI = "https://doi.org/10.5281/zenodo.20129665"
 Companion = "https://github.com/kootru-repo/cumulant-residual-cert"
 

@@ -72,7 +72,7 @@ Code is MIT-licensed (see [`LICENSE`](LICENSE)). Notebooks, data, and documentat
 
 ## About
 
-Maintained by **Kootru Labs** (a DBA of Kootru LLC), [www.kootru.com](https://www.kootru.com).
+Maintained by **Kootru Labs**, Burlington, USA. Website: [labs.kootru.com](https://labs.kootru.com).
 
 Author and Principal Researcher: **Andrew Craton** ([ORCID 0009-0001-2269-8599](https://orcid.org/0009-0001-2269-8599), [acraton@kootru.com](mailto:acraton@kootru.com)).
 
@@ -88,7 +88,7 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
 @dataset{charge_filtered_cumulant_residuals,
   author       = {Craton, Andrew},
   title        = {{charge-filtered-cumulant-residuals}: reproducibility envelope},
-  organization = {Kootru Labs (DBA of Kootru LLC)},
+  organization = {Kootru Labs},
   doi          = {10.5281/zenodo.20129665},
   url          = {https://doi.org/10.5281/zenodo.20129665},
   year         = {2026}
@@ -102,7 +102,7 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
   author       = {Craton, Andrew},
   title        = {Charge-filtered cumulant residual bounds for charge-neutral
                   fermionic-word observables on {$U(1)$}-invariant states},
-  organization = {Kootru Labs (DBA of Kootru LLC)},
+  organization = {Kootru Labs},
   year         = {2026},
   note         = {Manuscript in preparation}
 }
@@ -115,7 +115,7 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
   author       = {Craton, Andrew},
   title        = {{cumulant-residual-cert}: deterministic bias certificates for
                   charge-neutral fermionic-word observables},
-  organization = {Kootru Labs (DBA of Kootru LLC)},
+  organization = {Kootru Labs},
   url          = {https://github.com/kootru-repo/cumulant-residual-cert},
   version      = {0.5.0},
   year         = {2026}
