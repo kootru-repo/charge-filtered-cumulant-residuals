@@ -64,7 +64,7 @@ tests/mutation_check.py       optional: 10-mutation sanity check on the implemen
 data/                         five deposited JSON outputs + MANIFEST.json
 docs/                         claim_index.md (manuscript claim → notebook + test + data)
 binder/                       environment.yml + runtime.txt + postBuild
-.github/workflows/            tests.yml, notebooks.yml, lint.yml, dependabot
+.github/workflows/            tests.yml, notebooks.yml
 ```
 
 See `docs/claim_index.md` for the manuscript-to-repository claim map.
