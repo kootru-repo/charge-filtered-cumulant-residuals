@@ -13,7 +13,7 @@ license:
   - CC-BY-4.0    # notebooks, data, docs
 version: "0.1.0"
 date-released: "2026-05-10"
-doi: "10.5281/zenodo.XXXXXXX"  # author to fill once Zenodo deposit is live
+doi: "10.5281/zenodo.20129665"
 references:
   - type: article
     title: "Charge-filtered cumulant residual bounds for charge-neutral fermionic-word observables on U(1)-invariant states"

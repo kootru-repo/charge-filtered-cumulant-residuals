@@ -19,9 +19,24 @@ Each numerical claim in the manuscript is mapped to a notebook, a test, and a de
 
 | Manuscript section | Claim | Notebook | Test | Data |
 |---|---|---|---|---|
-| Sec VI | $3679$ charge-neutral observables across $26$ fixed-$N$ states | `03_implementation_audit.ipynb` | `tests/test_data_integrity.py` (file integrity) | `data/screen_sector_cumulant_theorem.json`, `data/screen_sector_cumulant_extended.json`, `data/screen_sector_audit_r5.json` |
-| Sec VI | All $3679$ instances satisfy the bound at zero numerical violation | `03_implementation_audit.ipynb` | `tests/test_data_integrity.py` | `data/audit_sector_cumulant_results.json` |
-| Sec VI | $B^{\mathrm{eff}}_{\max} \approx 2.0$ on the audit suite | `03_implementation_audit.ipynb` | `tests/test_data_integrity.py` | `data/screen_sector_audit_r5.json` |
+| Sec VI | $3679$ charge-neutral observables across $26$ fixed-$N$ states | `03_implementation_audit.ipynb` | `tests/test_data_integrity.py` + `tests/test_audit_results_structure.py::test_headline_per_cell_counts_consistent_with_headline` | `data/screen_sector_cumulant_theorem.json`, `data/screen_sector_cumulant_extended.json`, `data/screen_sector_audit_r5.json` |
+| Sec VI | All $3679$ instances satisfy the bound at zero numerical violation | `03_implementation_audit.ipynb` | `tests/test_audit_results_structure.py::test_headline_zero_violations` | `data/audit_sector_cumulant_results.json` |
+| Sec VI | $B^{\mathrm{eff}}_{\max} \approx 2.0$ on the audit suite | `03_implementation_audit.ipynb` | `tests/test_audit_results_structure.py` | `data/screen_sector_audit_r5.json` |
+
+> **Note on word-type coverage.** The deposited audit JSONs above
+> ($630 + 1960 + 1089 = 3679$ observables) were produced from an
+> enumerator pass that covered four of the five Corollary 1 word
+> types: `nnn`, `nnnn`, `hopn`, and `doublex`. The fifth word type
+> (`hopnn` $= a^\dagger a n n$, whose block-refined constant is $3$)
+> was added to `enumerate_chemistry_catalog` after the deposited
+> screens were taken. Future audit runs via `evaluate_catalog`
+> will cover all five word types; the headline $3679$ refers to the
+> historical four-type screens. The Corollary 1 constants for the
+> fifth word type are independently verified by
+> `tests/test_catalog_corollary.py::test_block_refined_constants_at_r4`
+> (which enumerates the partition-lattice contribution directly from
+> the definition, not via `evaluate_catalog`) and by
+> `tests/test_constants.py::test_Bhat_charge_r_chemistry_catalog_at_r_4`.
 
 ## Worked-example zero baseline (Sec V)
 

@@ -19,34 +19,43 @@ def enumerate_chemistry_catalog(
     *,
     cap_hopping: int = 200,
     cap_double: int = 350,
+    cap_hop_density: int = 250,
 ):
     """Enumerate the chemistry-motivated catalog at orbital count n.
 
-    The full unconstrained chemistry catalog at n=8 has
-        C(8,3) + C(8,4) + 8*7*6 + ...
-    entries; the audit ran on a deterministic subset of 3679 catalog
-    observables across 26 fixed-N states (see the manuscript and the
-    deposited `data/screen_sector_*.json` JSONs). For notebook
-    execution we cap the triple-index hopping sweep at
-    `cap_hopping` and the four-index double-excitation sweep at
-    `cap_double` so this enumeration finishes in under a second at
-    n=8 while still covering all five catalog WORD TYPES (the
-    Corollary 1 constants depend on word type, not on the number of
-    distinct site placements enumerated). The audit JSONs and their
-    SHA256 entries in MANIFEST.json record the full 3679 instances;
-    `evaluate_catalog` here is meant for fast scale checks, not for
-    reproducing the audit headline count.
+    Emits all five chemistry-catalog word types from Corollary 1 of the
+    manuscript:
+
+      label        word                       (h, z)   block-refined constant
+      "nnn"        n_i n_j n_k                (0, 3)   1
+      "hopn"       a^dag_i a_j n_k            (1, 1)   1
+      "doublex"    a^dag_i a^dag_j a_k a_m    (2, 0)   1
+      "hopnn"      a^dag_i a_j n_k n_l        (1, 2)   3
+      "nnnn"       n_i n_j n_k n_l            (0, 4)   5
+
+    Note on the deposited data. The audit JSONs deposited in
+    ``data/screen_sector_*.json`` (summing to 3679 observables across 26
+    fixed-N states) were produced from an earlier version of this
+    enumerator that omitted the ``hopn n`` word type, before the full
+    five-type listing was wired up. Future audit runs from
+    :func:`evaluate_catalog` will cover all five word types; the
+    deposited headline number 3679 reflects the historical 4-type
+    enumeration. See ``docs/claim_index.md`` for the per-word-type
+    breakdown.
 
     Parameters
     ----------
     n : int
         Number of orbitals / qubits in the JW encoding.
     cap_hopping : int
-        Maximum number of (a^dag a n) entries to include before stopping the
-        triple-index sweep early. Matches the existing audit pipeline.
+        Maximum number of ``a^dag a n`` entries to include before stopping
+        the triple-index sweep early.
     cap_double : int
-        Maximum total catalog size before stopping the (a^dag a^dag a a)
-        excitation sweep early.
+        Maximum total catalog size before stopping the
+        ``a^dag a^dag a a`` excitation sweep early.
+    cap_hop_density : int
+        Maximum number of ``a^dag a n n`` entries to include before
+        stopping the four-index sweep early.
 
     Returns
     -------
@@ -96,5 +105,26 @@ def enumerate_chemistry_catalog(
                 break
         if len(catalog) >= cap_double:
             break
+
+    # a^dag_i a_j n_k n_l + h.c.  (hopping with double density; h=1, z=2)
+    # This is the fifth chemistry-catalog word type from Corollary 1, whose
+    # block-refined constant is 3 (the largest non-trivial value in the
+    # catalog's block-refined set besides the all-number length-4 word).
+    hopnn_start = len(catalog)
+    for i in sites:
+        if len(catalog) - hopnn_start >= cap_hop_density:
+            break
+        for j in sites:
+            if j == i:
+                continue
+            if len(catalog) - hopnn_start >= cap_hop_density:
+                break
+            remaining = [s for s in sites if s not in {i, j}]
+            for k, l in combinations(remaining, 2):
+                w = (("ad", i), ("a", j), ("n", k), ("n", l))
+                w_dag = (("n", k), ("n", l), ("ad", j), ("a", i))
+                catalog.append(("hopnn", (i, j, k, l), w, 1.0, w_dag))
+                if len(catalog) - hopnn_start >= cap_hop_density:
+                    break
 
     return catalog
