@@ -7,9 +7,21 @@ Reproducibility repository for the manuscript:
 [![Tests](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml)
 [![Notebooks](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kootru-repo/charge-filtered-cumulant-residuals/HEAD?labpath=notebooks%2F00_overview.ipynb)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129665.svg)](https://doi.org/10.5281/zenodo.20129665)
 
 This repository reproduces every numerical claim in the manuscript. Math content is algebraic and proved in the manuscript itself; this repository is the operational reproducibility envelope.
+
+## For peer reviewers of the manuscript
+
+If you are a peer reviewer, the fastest verification path is:
+
+1. **Click the Binder badge above.** Cold start ~3 min; no local installation required.
+2. Open [`notebooks/00_overview.ipynb`](notebooks/00_overview.ipynb) and run all cells. The notebook ends with `assert` cells that confirm the manuscript's headline numerical claims (the partition-lattice constants $B_r$, $B^{\mathrm{charge}}_r(W)$, $\widehat B^{\mathrm{charge}}_r(W) \in \{1, 3, 5\}$ on the chemistry catalog, and the audit summary of $3679$ observables across $26$ fixed-$N$ states).
+3. Jump to any other notebook in numbered order to verify a specific claim; each ends with its own `assert` cell tied back to a manuscript section.
+
+For a claim-by-claim manuscript-to-repository map, see [`docs/claim_index.md`](docs/claim_index.md). For SHA256 verification of the deposited data only (no notebook execution, no Python install), see [Data integrity](#data-integrity) below.
+
+The three reproduction paths described next are the same content rephrased by effort level. Pick the path that matches your time budget.
 
 ## Three reproduction paths
 
