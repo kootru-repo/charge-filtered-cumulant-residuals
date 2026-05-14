@@ -5,22 +5,39 @@ type: software
 authors:
   - family-names: Craton
     given-names: Andrew
-    affiliation: "Kootru Labs"
+    affiliation: "Kootru Labs (DBA of Kootru LLC)"
+    email: "acraton@kootru.com"
     orcid: "https://orcid.org/0009-0001-2269-8599"
+    website: "https://www.kootru.com"
 repository-code: "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
+url: "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
 license:
   - MIT          # source code (src/, tests/, root config)
   - CC-BY-4.0    # notebooks, data, docs
 version: "0.1.0"
 date-released: "2026-05-10"
 doi: "10.5281/zenodo.20129665"
+contact:
+  - family-names: Craton
+    given-names: Andrew
+    affiliation: "Kootru Labs (DBA of Kootru LLC)"
+    email: "acraton@kootru.com"
 references:
   - type: article
     title: "Charge-filtered cumulant residual bounds for charge-neutral fermionic-word observables on U(1)-invariant states"
     authors:
       - family-names: Craton
         given-names: Andrew
-        affiliation: "Kootru Labs"
+        affiliation: "Kootru Labs (DBA of Kootru LLC)"
         orcid: "https://orcid.org/0009-0001-2269-8599"
     year: 2026
-    # doi: "10.NNNN/publication-DOI"  # author to fill at submission
+    # doi: "10.NNNN/publication-DOI"  # author to fill at acceptance
+  - type: software
+    title: "cumulant-residual-cert: deterministic bias certificates for charge-neutral fermionic-word observables"
+    authors:
+      - family-names: Craton
+        given-names: Andrew
+        affiliation: "Kootru Labs (DBA of Kootru LLC)"
+        orcid: "https://orcid.org/0009-0001-2269-8599"
+    repository-code: "https://github.com/kootru-repo/cumulant-residual-cert"
+    year: 2026

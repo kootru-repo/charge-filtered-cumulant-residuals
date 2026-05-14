@@ -68,11 +68,59 @@ See `docs/claim_index.md` for the manuscript-to-repository claim map.
 
 ## License
 
-Code is MIT-licensed (see `LICENSE`). Notebooks, data, and documentation are CC-BY-4.0 (see `LICENSE-DATA`).
+Code is MIT-licensed (see [`LICENSE`](LICENSE)). Notebooks, data, and documentation are CC-BY-4.0 (see [`LICENSE-DATA`](LICENSE-DATA)). Copyright held by Kootru Labs (a DBA of Kootru LLC).
 
-## Citation
+## About
 
-If you use this code or data, please cite the manuscript and the Zenodo deposit. See `CITATION.cff`.
+Maintained by **Kootru Labs** (a DBA of Kootru LLC), [www.kootru.com](https://www.kootru.com).
+
+Author and Principal Researcher: **Andrew Craton** ([ORCID 0009-0001-2269-8599](https://orcid.org/0009-0001-2269-8599), [acraton@kootru.com](mailto:acraton@kootru.com)).
+
+This repository is the canonical reproducibility envelope for the manuscript; its Zenodo deposit ([DOI 10.5281/zenodo.20129665](https://doi.org/10.5281/zenodo.20129665)) is the citable artefact for the numerical content. A user-facing companion library that calls the same primitives in production code is published at [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert); its catalog constants are continuously cross-checked against this repository in CI.
+
+## How to cite
+
+Please cite both the deposit and the manuscript. A machine-readable [`CITATION.cff`](CITATION.cff) is provided; the BibTeX below is the equivalent.
+
+**Reproducibility deposit (this repository, Zenodo):**
+
+```bibtex
+@dataset{charge_filtered_cumulant_residuals,
+  author       = {Craton, Andrew},
+  title        = {{charge-filtered-cumulant-residuals}: reproducibility envelope},
+  organization = {Kootru Labs (DBA of Kootru LLC)},
+  doi          = {10.5281/zenodo.20129665},
+  url          = {https://doi.org/10.5281/zenodo.20129665},
+  year         = {2026}
+}
+```
+
+**Manuscript:**
+
+```bibtex
+@unpublished{craton_charge_filtered_cumulant_residuals_manuscript,
+  author       = {Craton, Andrew},
+  title        = {Charge-filtered cumulant residual bounds for charge-neutral
+                  fermionic-word observables on {$U(1)$}-invariant states},
+  organization = {Kootru Labs (DBA of Kootru LLC)},
+  year         = {2026},
+  note         = {Manuscript in preparation}
+}
+```
+
+**Companion library (optional, if you use the user-facing API):**
+
+```bibtex
+@software{cumulant_residual_cert,
+  author       = {Craton, Andrew},
+  title        = {{cumulant-residual-cert}: deterministic bias certificates for
+                  charge-neutral fermionic-word observables},
+  organization = {Kootru Labs (DBA of Kootru LLC)},
+  url          = {https://github.com/kootru-repo/cumulant-residual-cert},
+  version      = {0.5.0},
+  year         = {2026}
+}
+```
 
 ## How to verify a specific manuscript claim
 
