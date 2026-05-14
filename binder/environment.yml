@@ -11,7 +11,6 @@ dependencies:
   - pip
   - pip:
       # Install the local package (this repo) in editable mode so notebooks
-      # can `import connected_layer_sector`. The `--no-deps` flag avoids
-      # re-resolving against pip what conda has already installed.
-      - --no-deps
+      # can `import connected_layer_sector`. Runtime deps (numpy, scipy)
+      # are already conda-installed above, so pip sees them satisfied.
       - -e .
