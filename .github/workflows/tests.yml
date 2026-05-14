@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   primary:
-    # Primary gate: Linux + Python 3.12 (matches Binder).
+    # Primary gate: Linux + Python 3.12.
     name: linux-3.12-full
     runs-on: ubuntu-latest
     steps:

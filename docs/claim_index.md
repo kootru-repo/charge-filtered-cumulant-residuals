@@ -67,4 +67,4 @@ Each numerical claim in the manuscript is mapped to a notebook, a test, and a de
 
 ## Status
 
-All claims are verified by either a `pytest` test, a notebook `assert` cell, or a data-integrity SHA256 check. Run `pytest` (locally) and `pytest --nbval-lax notebooks/` (locally or on Binder) to verify the full set in two commands.
+All claims are verified by either a `pytest` test, a notebook `assert` cell, or a data-integrity SHA256 check. Run `pytest` and `pytest --nbval-lax notebooks/` to verify the full set in two commands.

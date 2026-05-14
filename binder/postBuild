@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Binder postBuild: nothing extra. The local package is installed via the
-# pip section of environment.yml. Single source of truth for dependencies.
-set -e
-echo "Binder postBuild: package installation handled by environment.yml."
