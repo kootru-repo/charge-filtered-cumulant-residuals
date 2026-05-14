@@ -2,7 +2,7 @@
 
 Reproducibility repository for the manuscript:
 
-> **Charge-filtered cumulant residual bounds for charge-neutral fermionic-word observables on $\mathrm{U}(1)$-invariant states.**
+> **Charge- and block-refined bias bounds for second-order cumulant truncation on $\mathrm{U}(1)$-invariant fermionic states.**
 
 [![Tests](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml)
 [![Notebooks](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml)
@@ -100,8 +100,8 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
 ```bibtex
 @unpublished{craton_charge_filtered_cumulant_residuals_manuscript,
   author       = {Craton, Andrew},
-  title        = {Charge-filtered cumulant residual bounds for charge-neutral
-                  fermionic-word observables on {$U(1)$}-invariant states},
+  title        = {Charge- and block-refined bias bounds for second-order
+                  cumulant truncation on {$U(1)$}-invariant fermionic states},
   organization = {Kootru Labs},
   year         = {2026},
   note         = {Manuscript in preparation}
