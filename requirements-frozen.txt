@@ -1,0 +1,27 @@
+# requirements-frozen.txt
+# Pinned snapshot of the verified runtime + test environment for
+# the v0.2.0 PRX Quantum submission. Captured 2026-05-15 from a
+# clean pip resolve of the pyproject.toml `dependencies` and the
+# `[project.optional-dependencies] dev` extras. Pins are exact
+# versions, not range constraints; reproduce with:
+#
+#     python -m venv .venv
+#     .venv/bin/pip install -r requirements-frozen.txt
+#     .venv/bin/pip install -e .
+#     .venv/bin/pytest -q
+#
+# These pins establish a deterministic re-run environment. For a
+# fully durable container, a Dockerfile that installs this file is
+# the recommended next step; not load-bearing for the submission.
+
+# runtime
+numpy==2.4.3
+scipy==1.17.1
+
+# dev / test
+pytest==9.0.3
+pytest-cov==7.1.0
+
+# build
+setuptools==82.0.1
+wheel
