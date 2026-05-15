@@ -97,7 +97,7 @@ def test_enumerate_chemistry_catalog_hopnn_has_correct_charge_pattern():
     catalog = enumerate_chemistry_catalog(n=5)
     hopnn_entries = [entry for entry in catalog if entry[0] == "hopnn"]
     assert hopnn_entries, "expected at least one hopnn entry at n=5"
-    for label, sites, word, coef, w_dag in hopnn_entries:
+    for _label, sites, word, _coef, _w_dag in hopnn_entries:
         charges = tuple(letter_charge(lpair) for lpair in word)
         positives = sum(1 for c in charges if c == +1)
         negatives = sum(1 for c in charges if c == -1)

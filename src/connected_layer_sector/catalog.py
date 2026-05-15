@@ -120,10 +120,10 @@ def enumerate_chemistry_catalog(
             if len(catalog) - hopnn_start >= cap_hop_density:
                 break
             remaining = [s for s in sites if s not in {i, j}]
-            for k, l in combinations(remaining, 2):
-                w = (("ad", i), ("a", j), ("n", k), ("n", l))
-                w_dag = (("n", k), ("n", l), ("ad", j), ("a", i))
-                catalog.append(("hopnn", (i, j, k, l), w, 1.0, w_dag))
+            for k, ell in combinations(remaining, 2):
+                w = (("ad", i), ("a", j), ("n", k), ("n", ell))
+                w_dag = (("n", k), ("n", ell), ("ad", j), ("a", i))
+                catalog.append(("hopnn", (i, j, k, ell), w, 1.0, w_dag))
                 if len(catalog) - hopnn_start >= cap_hop_density:
                     break
 

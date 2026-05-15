@@ -70,6 +70,7 @@ def evaluate_catalog(rho: np.ndarray, n_orb: int, *, r: int = 4) -> dict:
         "max_tau_word": list(max_tau_word) if max_tau_word else None,
         "B_eff_max": float(max_B_eff),
         "eta_universal": float(eta_universal),
+        "eta_well_defined": eta_well_defined,
         "B_r_universal": int(B_r),
         "M_r_universal": int(M_r),
         "n_catalog_words": len(catalog),

@@ -17,20 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          python-version: "3.12"
-          cache: "pip"
+          enable-cache: true
+      - name: Set up Python 3.12 via uv
+        run: uv python install 3.12
       - name: Install package + dev extras
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e ".[dev]"
+        run: uv sync --python 3.12 --extra dev
       - name: Run pytest with coverage
         # MANIFEST.json is committed at deposit time; the integrity test
         # hashes data/ against it. We intentionally do NOT regenerate the
         # manifest in CI -- doing so would make the data-integrity test
         # tautological (hash today's files against today's manifest).
-        run: pytest --cov=connected_layer_sector --cov-report=term-missing -q
+        run: uv run pytest --cov=connected_layer_sector --cov-report=term-missing -q
 
   compatibility:
     # Smoke matrix: unit tests only (no notebook execution); narrower than
@@ -45,15 +45,14 @@ jobs:
         python-version: ["3.11", "3.13"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: "pip"
+          enable-cache: true
+      - name: Set up Python ${{ matrix.python-version }} via uv
+        run: uv python install ${{ matrix.python-version }}
       - name: Install package + dev extras
-        shell: bash
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e ".[dev]"
+        run: uv sync --python ${{ matrix.python-version }} --extra dev
       - name: Run unit tests (no notebooks)
         # Same reasoning as primary: do not regenerate manifest in CI.
-        run: pytest -q --ignore=tests/test_smoke_regeneration.py
+        run: uv run pytest -q --ignore=tests/test_smoke_regeneration.py

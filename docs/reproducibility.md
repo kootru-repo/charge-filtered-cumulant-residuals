@@ -2,14 +2,14 @@
 
 Every numerical claim in the manuscript can be verified through one of two reproduction paths.
 
-## Path 1: Local pip install + pytest
+## Path 1: Local uv + pytest
 
 ```bash
 git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
 cd charge-filtered-cumulant-residuals
-pip install -e ".[dev]"
-cls-manifest    # generate MANIFEST.json with provenance
-pytest          # ~30 unit tests, ~2 minutes on a laptop
+uv sync --extra dev
+uv run cls-manifest    # generate MANIFEST.json with provenance
+uv run pytest          # ~30 unit tests, ~2 minutes on a laptop
 ```
 
 Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Python 3.12 is the primary CI gate; the other combinations run unit tests only.
@@ -17,8 +17,8 @@ Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Pyt
 To execute notebooks programmatically:
 
 ```bash
-pip install -e ".[dev,notebooks]"
-pytest --nbval-lax notebooks/
+uv sync --extra dev --extra notebooks
+uv run pytest --nbval-lax notebooks/
 ```
 
 Each notebook ends with `assert` cells. Every `assert` should pass. If any fails, the failing cell prints which manuscript claim is affected.
@@ -38,9 +38,9 @@ The `notebooks.yml` CI workflow runs all six notebooks headlessly on every push;
 If you only want to confirm the deposited results have not been corrupted:
 
 ```bash
-pip install -e .
-cls-manifest
-pytest tests/test_data_integrity.py
+uv sync
+uv run cls-manifest
+uv run pytest tests/test_data_integrity.py
 ```
 
 This hashes the five deposited JSONs against the SHA256 entries in `MANIFEST.json` and validates the manifest's provenance fields (schema version, git commit/tag, Python version, platform, deterministic-seed policy).
@@ -58,7 +58,7 @@ All numerical claims are deterministic given the seed. The seed helper is in `co
 If a `pytest` test or a notebook `assert` fails on your machine, please file an issue with:
 
 - Operating system + Python version
-- Output of `pip list` for `numpy`, `scipy`, the package itself
+- Output of `uv pip list | grep -Ei 'numpy|scipy|connected'` (or `uv tree --depth 1`)
 - Full pytest output for the failing test (or the notebook traceback)
 - Whether `tests/test_data_integrity.py` passed (file integrity is a precondition)
 

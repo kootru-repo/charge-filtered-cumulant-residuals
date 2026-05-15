@@ -10,6 +10,14 @@ Reproducibility repository for the manuscript:
 
 This repository reproduces every numerical claim in the manuscript. Math content is algebraic and proved in the manuscript itself; this repository is the operational reproducibility envelope.
 
+## Requirements
+
+- Python `>=3.11` (CI runs 3.11, 3.12, 3.13; Linux + 3.12 is the primary gate).
+- [uv](https://docs.astral.sh/uv/) (one-line install: `curl -LsSf https://astral.sh/uv/install.sh | sh` on Linux/macOS; `irm https://astral.sh/uv/install.ps1 | iex` on Windows).
+- No other system prerequisites. UV manages the Python toolchain itself.
+
+Core dependencies (`numpy >= 1.26`, `scipy >= 1.11`) and dev / notebook extras (`pytest`, `nbval`, `jupyterlab`, `matplotlib`, `ruff`) are declared in [`pyproject.toml`](pyproject.toml) and pinned in [`uv.lock`](uv.lock). The lockfile is the durable execution record; the manuscript's reproducibility claims are anchored against this exact resolution.
+
 ## For peer reviewers of the manuscript
 
 If you are a peer reviewer, the fastest verification path is:
@@ -17,9 +25,9 @@ If you are a peer reviewer, the fastest verification path is:
 ```bash
 git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
 cd charge-filtered-cumulant-residuals
-pip install -e .[dev,notebooks]
-pytest                                      # ~2 min: unit suite
-jupyter lab notebooks/00_overview.ipynb     # open + run all cells
+uv sync --extra dev --extra notebooks
+uv run pytest                                       # ~2 min: unit suite
+uv run jupyter lab notebooks/00_overview.ipynb      # open + run all cells
 ```
 
 The pytest run confirms the manuscript's headline numerical claims (the partition-lattice constants $B_r$, $B^{\mathrm{charge}}_r(W)$, $\widehat B^{\mathrm{charge}}_r(W) \in \{1, 3, 5\}$ on the chemistry catalog, and the audit summary of $3679$ observables across $26$ fixed-$N$ states). Each notebook ends with `assert` cells that confirm the headline claim of that section.
@@ -30,16 +38,16 @@ For a claim-by-claim manuscript-to-repository map, see [`docs/claim_index.md`](d
 
 | Path | Effort | What it verifies |
 |---|---|---|
-| **Local pip + pytest** | ~2 min on a laptop | Full unit-test suite + smoke regeneration of one cell |
-| **Data-only check** | ~10 sec | SHA256 verification of deposited JSONs against `MANIFEST.json` |
+| **Local uv + pytest** | ~2 min on a laptop | Full unit-test suite + smoke regeneration of one cell |
+| **Data-only check** | ~10 sec, no Python needed | SHA256 verification of deposited JSONs against `MANIFEST.json` |
 
 ### Local
 
 ```bash
 git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
 cd charge-filtered-cumulant-residuals
-pip install -e .[dev]
-pytest
+uv sync --extra dev
+uv run pytest
 ```
 
 Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Python 3.12 is the primary CI gate; macOS / Windows / 3.11 / 3.13 run unit tests only. The notebooks workflow (`notebooks.yml`) executes every notebook headlessly on each push, so a green badge above means the notebooks reproduce end-to-end on a clean machine.
@@ -47,10 +55,10 @@ Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Pyt
 ### Data integrity
 
 ```bash
-pytest tests/test_data_integrity.py
+uv run pytest tests/test_data_integrity.py
 ```
 
-Hashes the five deposited JSONs in `data/` against the SHA256 entries in `MANIFEST.json`. Confirms the deposited results have not been corrupted.
+Hashes the five deposited JSONs in `data/` against the SHA256 entries in `MANIFEST.json`. Confirms the deposited results have not been corrupted. (The hashing logic itself is stdlib-only, so this path also runs against a hand-curated environment if uv is not available.)
 
 ## Layout
 
@@ -131,9 +139,15 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
 ## Scope
 
 This repository is the **operational reproducibility envelope**: it
-reproduces every quoted numerical value in the manuscript, runs in
-under five minutes on a laptop, and exposes a thin
-pip-installable API so any reader can call the primitives directly.
+reproduces every quoted numerical value in the manuscript and runs
+in under five minutes on a laptop. The `src/connected_layer_sector/`
+package is an internal artefact, structured for `pytest` to import
+its primitives during verification; it is **not** a user-facing
+library. Readers who want a stable API for production use should
+install the companion library
+[`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert),
+which exposes the supported `certify()` entry point and the
+chemistry-workflow adapters.
 
 It is intentionally NOT an adversarial verification surface. The
 following are out of scope here:
