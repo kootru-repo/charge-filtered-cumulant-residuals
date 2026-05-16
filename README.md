@@ -27,25 +27,27 @@ Click any badge below. The notebook opens in Colab, finishes in about a minute o
 
 **No execution at all.** If you want to confirm only that the deposited JSON outputs are unmodified, the [data-integrity](#data-integrity-offline-no-python-needed) path below is a single stdlib-only Python script that hashes them against `MANIFEST.json`.
 
-## Data integrity (offline, no Python needed)
+## Data integrity (offline, stdlib only)
 
-A SHA256 verification of the five deposited JSONs in `data/` against the entries in `MANIFEST.json`. The hashing logic uses only the Python standard library, so this path works in any environment that has a `python3` binary.
+A SHA256 verification of the five deposited JSONs in `data/` against the entries in `MANIFEST.json`. Stdlib-only; no `uv`, no `pip`, no project install required. From the repository root:
 
 ```bash
-python3 -c "
-import hashlib, json, pathlib
-m = json.loads(pathlib.Path('MANIFEST.json').read_text())
-fail = 0
-for path, entry in m['files'].items():
-    h = hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
-    ok = h == entry['sha256']
-    print(('OK   ' if ok else 'FAIL '), path)
-    fail += 0 if ok else 1
-print(f'{fail} failure(s)' if fail else 'all five JSONs match MANIFEST')
-"
+python3 tools/check_integrity.py
 ```
 
-Expected output is five `OK` lines followed by `all five JSONs match MANIFEST`. The pytest-based equivalent at `tests/test_data_integrity.py` runs the same check inside the full local install.
+Expected output:
+
+```
+OK    data/audit_sector_cumulant_results.json
+OK    data/calibration_chemistry.json
+OK    data/screen_sector_audit_r5.json
+OK    data/screen_sector_cumulant_extended.json
+OK    data/screen_sector_cumulant_theorem.json
+
+all 5 deposited file(s) match MANIFEST.json
+```
+
+Exit code 0 on success, 1 on any mismatch (so this works as a CI gate). The pytest-based equivalent at `tests/test_data_integrity.py` runs the same check inside the full local install.
 
 ## Local install (only if you want to dig deeper)
 
@@ -86,7 +88,7 @@ Maintained by **Kootru Labs**, Burlington, USA. Website: [labs.kootru.com](https
 
 Author: **Andrew Craton** ([ORCID 0009-0001-2269-8599](https://orcid.org/0009-0001-2269-8599), [acraton@kootru.com](mailto:acraton@kootru.com)).
 
-This repository is the canonical reproducibility envelope for the manuscript; its Zenodo deposit ([concept DOI 10.5281/zenodo.20129664](https://doi.org/10.5281/zenodo.20129664), auto-tracks the latest version) is the citable artefact for the numerical content. A user-facing companion library that calls the same primitives in production code is published at [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert); its catalog constants are continuously cross-checked against this repository in CI.
+This repository is the canonical reproducibility envelope for the manuscript; its Zenodo deposit ([concept DOI 10.5281/zenodo.20129664](https://doi.org/10.5281/zenodo.20129664), auto-tracks the latest version) is the citable artefact for the numerical content. A user-facing companion library that calls the same primitives in production code is published at [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert) (full API reference + scaling characteristics: <https://kootru-repo.github.io/cumulant-residual-cert/>); its catalog constants are continuously cross-checked against this repository in CI.
 
 ## How to cite
 
