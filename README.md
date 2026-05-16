@@ -6,7 +6,7 @@ Reproducibility repository for the manuscript:
 
 [![Tests](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml)
 [![Notebooks](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129664.svg)](https://doi.org/10.5281/zenodo.20129664)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129665.svg)](https://doi.org/10.5281/zenodo.20129665)
 
 Every numerical claim in the manuscript reproduces in your browser, in about a minute per notebook, with no install. The algebraic theorems are proved in the paper itself; this repository is the operational reproducibility envelope.
 

@@ -125,16 +125,11 @@ def fermionic_orbital_rotation(W_mat: np.ndarray, n_orb: int) -> np.ndarray:
     so an unsafe input produces a clear error rather than silent drift.
     """
     if W_mat.shape != (n_orb, n_orb):
-        raise ValueError(
-            f"W_mat must be shape ({n_orb}, {n_orb}); got {W_mat.shape}"
-        )
+        raise ValueError(f"W_mat must be shape ({n_orb}, {n_orb}); got {W_mat.shape}")
     eye = np.eye(n_orb, dtype=W_mat.dtype)
     unitarity_err = np.linalg.norm(W_mat @ W_mat.conj().T - eye)
     if unitarity_err > 1e-10:
-        raise ValueError(
-            "W_mat must be unitary; "
-            f"||W W^* - I|| = {unitarity_err:.2e}"
-        )
+        raise ValueError(f"W_mat must be unitary; ||W W^* - I|| = {unitarity_err:.2e}")
     K_one_body = logm(W_mat)
     anti_herm_err = np.linalg.norm(K_one_body + K_one_body.conj().T)
     if anti_herm_err > 1e-8:

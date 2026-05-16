@@ -79,8 +79,7 @@ def test_enumerate_chemistry_catalog_covers_all_five_word_types():
     labels_present = {entry[0] for entry in catalog}
     expected_labels = {"nnn", "nnnn", "hopn", "doublex", "hopnn"}
     assert expected_labels.issubset(labels_present), (
-        f"missing word-type labels: {expected_labels - labels_present}; "
-        f"present: {labels_present}"
+        f"missing word-type labels: {expected_labels - labels_present}; present: {labels_present}"
     )
 
 

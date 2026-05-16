@@ -66,6 +66,5 @@ def test_audit_input_refers_to_a_deposited_screen():
     d = _load()
     input_name = d["audit_input"]
     assert (ROOT / "data" / input_name).exists(), (
-        f"audit_input={input_name!r} but {ROOT / 'data' / input_name} "
-        "is not deposited"
+        f"audit_input={input_name!r} but {ROOT / 'data' / input_name} is not deposited"
     )
