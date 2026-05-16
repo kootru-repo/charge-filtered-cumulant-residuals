@@ -55,16 +55,18 @@ Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Pyt
 
 ### Colab
 
-The bootstrap cell at the top of each notebook clones this repo to `/content`, installs the package via `uv`, and runs the rest of the notebook unchanged. All six notebooks run end-to-end on Colab's free CPU tier in under five minutes.
+No local install. Click any badge below: the notebook opens in your browser, finishes in about a minute on Colab's free CPU tier, and ends with `assert` cells that pass when the manuscript claim it verifies is reproduced.
 
-| # | Notebook | Manuscript section | Open in Colab |
+| # | Notebook | What this notebook reproduces from the manuscript | Run |
 |---|---|---|---|
-| 00 | [`00_overview.ipynb`](notebooks/00_overview.ipynb) | orientation + headline constants | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/00_overview.ipynb) |
-| 01 | [`01_partition_constants.ipynb`](notebooks/01_partition_constants.ipynb) | Sec III, Theorem 1 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/01_partition_constants.ipynb) |
-| 02 | [`02_chemistry_catalog.ipynb`](notebooks/02_chemistry_catalog.ipynb) | Sec III, Cor 1 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/02_chemistry_catalog.ipynb) |
-| 03 | [`03_implementation_audit.ipynb`](notebooks/03_implementation_audit.ipynb) | Sec VI | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/03_implementation_audit.ipynb) |
-| 04 | [`04_correlated_calibration.ipynb`](notebooks/04_correlated_calibration.ipynb) | Sec V baseline + Hubbard $U/t$ sweep | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/04_correlated_calibration.ipynb) |
-| 05 | [`05_diagnostic_ucb_demo.ipynb`](notebooks/05_diagnostic_ucb_demo.ipynb) | Sec IV | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/05_diagnostic_ucb_demo.ipynb) |
+| 00 | [`00_overview.ipynb`](notebooks/00_overview.ipynb) | Every headline partition-lattice and chemistry-catalog constant in one pass; orient before drilling into 01-05. | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/00_overview.ipynb) |
+| 01 | [`01_partition_constants.ipynb`](notebooks/01_partition_constants.ipynb) | M\_r and B\_r partition-lattice constants and the charge-counting recurrence (Sec III, Thm 1). | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/01_partition_constants.ipynb) |
+| 02 | [`02_chemistry_catalog.ipynb`](notebooks/02_chemistry_catalog.ipynb) | Block-refined constants take values in {1, 3, 5} on every word of the chemistry catalog (Sec III, Cor 1). | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/02_chemistry_catalog.ipynb) |
+| 03 | [`03_implementation_audit.ipynb`](notebooks/03_implementation_audit.ipynb) | 3679-observable audit across 26 fixed-N states; effective constant near 2.0 vs the universal bound of 105 (Sec VI). | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/03_implementation_audit.ipynb) |
+| 04 | [`04_correlated_calibration.ipynb`](notebooks/04_correlated_calibration.ipynb) | Sec V zero baseline at U=0 and correlation-controlled growth across a Hubbard U/t sweep. | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/04_correlated_calibration.ipynb) |
+| 05 | [`05_diagnostic_ucb_demo.ipynb`](notebooks/05_diagnostic_ucb_demo.ipynb) | Sample-split upper confidence bound on synthetic shadows; one-sided coverage of the Sec V zero baseline (Sec IV). | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/05_diagnostic_ucb_demo.ipynb) |
+
+If a notebook finishes without an `AssertionError`, every claim cited in that row reproduced bit-exactly under the deposited environment. For SHA256 verification of the underlying JSON outputs without running notebooks at all, see [Data integrity](#data-integrity) below.
 
 ### Data integrity
 
