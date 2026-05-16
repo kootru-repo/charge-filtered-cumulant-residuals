@@ -34,11 +34,12 @@ The pytest run confirms the manuscript's headline numerical claims (the partitio
 
 For a claim-by-claim manuscript-to-repository map, see [`docs/claim_index.md`](docs/claim_index.md). For SHA256 verification of the deposited data only (no notebook execution, no Python install), see [Data integrity](#data-integrity) below.
 
-## Two reproduction paths
+## Three reproduction paths
 
 | Path | Effort | What it verifies |
 |---|---|---|
 | **Local uv + pytest** | ~2 min on a laptop | Full unit-test suite + smoke regeneration of one cell |
+| **Open any notebook on Colab** | one click, ~30 s bootstrap | Notebook end-to-end on Colab's free CPU tier; no local install |
 | **Data-only check** | ~10 sec, no Python needed | SHA256 verification of deposited JSONs against `MANIFEST.json` |
 
 ### Local
@@ -51,6 +52,19 @@ uv run pytest
 ```
 
 Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Python 3.12 is the primary CI gate; macOS / Windows / 3.11 / 3.13 run unit tests only. The notebooks workflow (`notebooks.yml`) executes every notebook headlessly on each push, so a green badge above means the notebooks reproduce end-to-end on a clean machine.
+
+### Colab
+
+The bootstrap cell at the top of each notebook clones this repo to `/content`, installs the package via `uv`, and runs the rest of the notebook unchanged. All six notebooks run end-to-end on Colab's free CPU tier in under five minutes.
+
+| # | Notebook | Manuscript section | Open in Colab |
+|---|---|---|---|
+| 00 | [`00_overview.ipynb`](notebooks/00_overview.ipynb) | orientation + headline constants | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/00_overview.ipynb) |
+| 01 | [`01_partition_constants.ipynb`](notebooks/01_partition_constants.ipynb) | Sec III, Theorem 1 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/01_partition_constants.ipynb) |
+| 02 | [`02_chemistry_catalog.ipynb`](notebooks/02_chemistry_catalog.ipynb) | Sec III, Cor 1 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/02_chemistry_catalog.ipynb) |
+| 03 | [`03_implementation_audit.ipynb`](notebooks/03_implementation_audit.ipynb) | Sec VI | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/03_implementation_audit.ipynb) |
+| 04 | [`04_correlated_calibration.ipynb`](notebooks/04_correlated_calibration.ipynb) | Sec V baseline + Hubbard $U/t$ sweep | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/04_correlated_calibration.ipynb) |
+| 05 | [`05_diagnostic_ucb_demo.ipynb`](notebooks/05_diagnostic_ucb_demo.ipynb) | Sec IV | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/05_diagnostic_ucb_demo.ipynb) |
 
 ### Data integrity
 
