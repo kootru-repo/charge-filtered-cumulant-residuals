@@ -6,7 +6,7 @@ Reproducibility repository for the manuscript:
 
 [![Tests](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/tests.yml)
 [![Notebooks](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129665.svg)](https://doi.org/10.5281/zenodo.20129665)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129664.svg)](https://doi.org/10.5281/zenodo.20129664)
 
 This repository reproduces every numerical claim in the manuscript. Math content is algebraic and proved in the manuscript itself; this repository is the operational reproducibility envelope.
 
@@ -84,7 +84,7 @@ Maintained by **Kootru Labs**, Burlington, USA. Website: [labs.kootru.com](https
 
 Author and Principal Researcher: **Andrew Craton** ([ORCID 0009-0001-2269-8599](https://orcid.org/0009-0001-2269-8599), [acraton@kootru.com](mailto:acraton@kootru.com)).
 
-This repository is the canonical reproducibility envelope for the manuscript; its Zenodo deposit ([DOI 10.5281/zenodo.20129665](https://doi.org/10.5281/zenodo.20129665)) is the citable artefact for the numerical content. A user-facing companion library that calls the same primitives in production code is published at [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert); its catalog constants are continuously cross-checked against this repository in CI.
+This repository is the canonical reproducibility envelope for the manuscript; its Zenodo deposit ([concept DOI 10.5281/zenodo.20129664](https://doi.org/10.5281/zenodo.20129664), auto-tracks the latest version) is the citable artefact for the numerical content. A user-facing companion library that calls the same primitives in production code is published at [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert); its catalog constants are continuously cross-checked against this repository in CI.
 
 ## How to cite
 
