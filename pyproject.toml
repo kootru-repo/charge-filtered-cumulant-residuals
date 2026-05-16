@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "connected-layer-sector"
-version = "0.2.1"
+version = "0.2.2"
 description = "Reproducibility envelope for charge-filtered cumulant residual bounds on U(1)-invariant states."
 readme = "README.md"
 requires-python = ">=3.11"

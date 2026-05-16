@@ -59,7 +59,11 @@ from connected_layer_sector.states import (
     tight_binding_eigenbasis,
 )
 
-__version__ = "0.1.0"
+try:
+    from importlib.metadata import version as _pkg_version
+    __version__ = _pkg_version("connected-layer-sector")
+except Exception:  # pragma: no cover -- editable / source-tree fallback
+    __version__ = "0.0.0+unknown"
 
 __all__ = [
     "B_charge_r",

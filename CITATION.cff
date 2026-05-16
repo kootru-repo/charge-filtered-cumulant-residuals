@@ -16,7 +16,7 @@ url: "https://github.com/kootru-repo/charge-filtered-cumulant-residuals"
 license:
   - MIT          # source code (src/, tests/, root config)
   - CC-BY-4.0    # notebooks, data, docs
-version: "0.2.1"
+version: "0.2.2"
 date-released: "2026-05-15"
 doi: "10.5281/zenodo.20129665"
 contact:
