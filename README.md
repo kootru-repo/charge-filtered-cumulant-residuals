@@ -8,54 +8,11 @@ Reproducibility repository for the manuscript:
 [![Notebooks](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml/badge.svg)](https://github.com/kootru-repo/charge-filtered-cumulant-residuals/actions/workflows/notebooks.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129664.svg)](https://doi.org/10.5281/zenodo.20129664)
 
-This repository reproduces every numerical claim in the manuscript. Math content is algebraic and proved in the manuscript itself; this repository is the operational reproducibility envelope.
+Every numerical claim in the manuscript reproduces in your browser, in about a minute per notebook, with no install. The algebraic theorems are proved in the paper itself; this repository is the operational reproducibility envelope.
 
-## Requirements
+## Reproduce in your browser (recommended for referees)
 
-- Python `>=3.11` (CI runs 3.11, 3.12, 3.13; Linux + 3.12 is the primary gate).
-- [uv](https://docs.astral.sh/uv/) (one-line install: `curl -LsSf https://astral.sh/uv/install.sh | sh` on Linux/macOS; `irm https://astral.sh/uv/install.ps1 | iex` on Windows).
-- No other system prerequisites. UV manages the Python toolchain itself.
-
-Core dependencies (`numpy >= 1.26`, `scipy >= 1.11`) and dev / notebook extras (`pytest`, `nbval`, `jupyterlab`, `matplotlib`, `ruff`) are declared in [`pyproject.toml`](pyproject.toml) and pinned in [`uv.lock`](uv.lock). The lockfile is the durable execution record; the manuscript's reproducibility claims are anchored against this exact resolution.
-
-## For peer reviewers of the manuscript
-
-If you are a peer reviewer, the fastest verification path is:
-
-```bash
-git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
-cd charge-filtered-cumulant-residuals
-uv sync --extra dev --extra notebooks
-uv run pytest                                       # ~2 min: unit suite
-uv run jupyter lab notebooks/00_overview.ipynb      # open + run all cells
-```
-
-The pytest run confirms the manuscript's headline numerical claims (the partition-lattice constants $B_r$, $B^{\mathrm{charge}}_r(W)$, $\widehat B^{\mathrm{charge}}_r(W) \in \{1, 3, 5\}$ on the chemistry catalog, and the audit summary of $3679$ observables across $26$ fixed-$N$ states). Each notebook ends with `assert` cells that confirm the headline claim of that section.
-
-For a claim-by-claim manuscript-to-repository map, see [`docs/claim_index.md`](docs/claim_index.md). For SHA256 verification of the deposited data only (no notebook execution, no Python install), see [Data integrity](#data-integrity) below.
-
-## Three reproduction paths
-
-| Path | Effort | What it verifies |
-|---|---|---|
-| **Local uv + pytest** | ~2 min on a laptop | Full unit-test suite + smoke regeneration of one cell |
-| **Open any notebook on Colab** | one click, ~30 s bootstrap | Notebook end-to-end on Colab's free CPU tier; no local install |
-| **Data-only check** | ~10 sec, no Python needed | SHA256 verification of deposited JSONs against `MANIFEST.json` |
-
-### Local
-
-```bash
-git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
-cd charge-filtered-cumulant-residuals
-uv sync --extra dev
-uv run pytest
-```
-
-Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Python 3.12 is the primary CI gate; macOS / Windows / 3.11 / 3.13 run unit tests only. The notebooks workflow (`notebooks.yml`) executes every notebook headlessly on each push, so a green badge above means the notebooks reproduce end-to-end on a clean machine.
-
-### Colab
-
-No local install. Click any badge below: the notebook opens in your browser, finishes in about a minute on Colab's free CPU tier, and ends with `assert` cells that pass when the manuscript claim it verifies is reproduced.
+Click any badge below. The notebook opens in Colab, finishes in about a minute on the free CPU tier, and ends with `assert` cells that pass when the manuscript claim it verifies is reproduced. If a notebook finishes without an `AssertionError`, every claim cited in that row reproduced bit-exactly under the deposited environment.
 
 | # | Notebook | What this notebook reproduces from the manuscript | Run |
 |---|---|---|---|
@@ -66,29 +23,58 @@ No local install. Click any badge below: the notebook opens in your browser, fin
 | 04 | [`04_correlated_calibration.ipynb`](notebooks/04_correlated_calibration.ipynb) | Sec V zero baseline at U=0 and correlation-controlled growth across a Hubbard U/t sweep. | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/04_correlated_calibration.ipynb) |
 | 05 | [`05_diagnostic_ucb_demo.ipynb`](notebooks/05_diagnostic_ucb_demo.ipynb) | Sample-split upper confidence bound on synthetic shadows; one-sided coverage of the Sec V zero baseline (Sec IV). | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kootru-repo/charge-filtered-cumulant-residuals/blob/main/notebooks/05_diagnostic_ucb_demo.ipynb) |
 
-If a notebook finishes without an `AssertionError`, every claim cited in that row reproduced bit-exactly under the deposited environment. For SHA256 verification of the underlying JSON outputs without running notebooks at all, see [Data integrity](#data-integrity) below.
+**Claim-to-notebook map.** For a row-by-row table mapping every manuscript claim (Theorems, Corollaries, headline numbers) to the specific notebook cell + assert + JSON file that reproduces it, see [`docs/claim_index.md`](docs/claim_index.md).
 
-### Data integrity
+**No execution at all.** If you want to confirm only that the deposited JSON outputs are unmodified, the [data-integrity](#data-integrity-offline-no-python-needed) path below is a single stdlib-only Python script that hashes them against `MANIFEST.json`.
+
+## Data integrity (offline, no Python needed)
+
+A SHA256 verification of the five deposited JSONs in `data/` against the entries in `MANIFEST.json`. The hashing logic uses only the Python standard library, so this path works in any environment that has a `python3` binary.
 
 ```bash
-uv run pytest tests/test_data_integrity.py
+python3 -c "
+import hashlib, json, pathlib
+m = json.loads(pathlib.Path('MANIFEST.json').read_text())
+fail = 0
+for path, entry in m['files'].items():
+    h = hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+    ok = h == entry['sha256']
+    print(('OK   ' if ok else 'FAIL '), path)
+    fail += 0 if ok else 1
+print(f'{fail} failure(s)' if fail else 'all five JSONs match MANIFEST')
+"
 ```
 
-Hashes the five deposited JSONs in `data/` against the SHA256 entries in `MANIFEST.json`. Confirms the deposited results have not been corrupted. (The hashing logic itself is stdlib-only, so this path also runs against a hand-curated environment if uv is not available.)
+Expected output is five `OK` lines followed by `all five JSONs match MANIFEST`. The pytest-based equivalent at `tests/test_data_integrity.py` runs the same check inside the full local install.
+
+## Local install (only if you want to dig deeper)
+
+Most referees will be served by the Colab path above. If you instead want to execute the full unit test suite, regenerate cells, or modify the code, install locally with [uv](https://docs.astral.sh/uv/) (one-line install: `curl -LsSf https://astral.sh/uv/install.sh | sh` on Linux/macOS; `irm https://astral.sh/uv/install.ps1 | iex` on Windows).
+
+```bash
+git clone https://github.com/kootru-repo/charge-filtered-cumulant-residuals
+cd charge-filtered-cumulant-residuals
+uv sync --extra dev                                # core install
+uv run pytest                                      # ~2 min: 39 unit tests + smoke regeneration
+uv sync --extra dev --extra notebooks              # add Jupyter + matplotlib
+uv run jupyter lab notebooks/00_overview.ipynb     # open + run all cells locally
+```
+
+Tests pass on Linux + macOS + Windows under Python 3.11, 3.12, 3.13. Linux + Python 3.12 is the primary CI gate; macOS / Windows / 3.11 / 3.13 run unit tests only. The `notebooks.yml` workflow runs every notebook headlessly on each push, so a green notebooks badge above means the notebooks reproduce end-to-end on a clean machine.
+
+Core dependencies (`numpy >= 1.26`, `scipy >= 1.11`) and dev / notebook extras (`pytest`, `nbval`, `jupyterlab`, `matplotlib`, `ruff`) are declared in [`pyproject.toml`](pyproject.toml) and pinned in [`uv.lock`](uv.lock).
 
 ## Layout
 
 ```
 src/connected_layer_sector/   importable Python package
 notebooks/                    six numbered notebooks, claim-indexed to manuscript sections
-tests/                        pytest suite (39 tests at present, >90% coverage target)
+tests/                        pytest suite (39 tests at present)
 tests/mutation_check.py       optional: 10-mutation sanity check on the implementation
 data/                         five deposited JSON outputs + MANIFEST.json
-docs/                         claim_index.md (manuscript claim → notebook + test + data)
+docs/claim_index.md           manuscript claim -> notebook + test + data file
 .github/workflows/            tests.yml, notebooks.yml
 ```
-
-See `docs/claim_index.md` for the manuscript-to-repository claim map.
 
 ## License
 
@@ -141,40 +127,20 @@ Please cite both the deposit and the manuscript. A machine-readable [`CITATION.c
                   charge-neutral fermionic-word observables},
   organization = {Kootru Labs},
   url          = {https://github.com/kootru-repo/cumulant-residual-cert},
-  version      = {0.5.0},
   year         = {2026}
 }
 ```
 
-## How to verify a specific manuscript claim
-
-1. Open `docs/claim_index.md`. Find the claim by manuscript section.
-2. The table tells you which notebook to open, which test to run, and which JSON to inspect.
-3. Each notebook ends with one or more `assert` cells that verify the claim numerically.
-
 ## Scope
 
-This repository is the **operational reproducibility envelope**: it
-reproduces every quoted numerical value in the manuscript and runs
-in under five minutes on a laptop. The `src/connected_layer_sector/`
-package is an internal artefact, structured for `pytest` to import
-its primitives during verification; it is **not** a user-facing
-library. Readers who want a stable API for production use should
-install the companion library
-[`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert),
-which exposes the supported `certify()` entry point and the
-chemistry-workflow adapters.
+This repository is the **operational reproducibility envelope**: it reproduces every quoted numerical value in the manuscript and runs in under five minutes on a laptop or in Colab. The `src/connected_layer_sector/` package is an internal artefact, structured for `pytest` to import its primitives during verification; it is **not** a user-facing library. Readers who want a stable API for production use should install the companion library [`cumulant-residual-cert`](https://github.com/kootru-repo/cumulant-residual-cert), which exposes the supported `certify()` entry point and the chemistry-workflow adapters.
 
-It is intentionally NOT an adversarial verification surface. The
-following are out of scope here:
+It is intentionally NOT an adversarial verification surface. The following are out of scope here:
 
 - adversarial state-search optimization for bound saturation,
-- mutation testing of the implementation modules beyond the
-  lightweight `tests/mutation_check.py` sanity harness,
+- mutation testing of the implementation modules beyond the lightweight `tests/mutation_check.py` sanity harness,
 - cross-validation against an independent symbolic-arithmetic oracle,
 - large-$n$ ($n \ge 5$) stress on the three-theorem chain,
 - the diagnostic-UCB Monte-Carlo coverage simulation.
 
-The manuscript's algebraic theorems are proved in the paper itself.
-This repository confirms the deposited numerical values are
-recomputable; it does not attempt to falsify the proofs.
+The manuscript's algebraic theorems are proved in the paper itself. This repository confirms the deposited numerical values are recomputable; it does not attempt to falsify the proofs.
