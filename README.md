@@ -47,7 +47,18 @@ OK    data/screen_sector_cumulant_theorem.json
 all 5 deposited file(s) match MANIFEST.json
 ```
 
-Exit code 0 on success, 1 on any mismatch (so this works as a CI gate). The pytest-based equivalent at `tests/test_data_integrity.py` runs the same check inside the full local install.
+Exit code 0 on success, 1 on any mismatch. The pytest-based equivalent at `tests/test_data_integrity.py` runs the same check inside the full local install.
+
+**When to run this:**
+
+- *Referee or auditor:* verify the deposited JSONs match what the manuscript references, before reading the audit notebooks. No install, no internet beyond the initial `git clone`.
+- *Researcher who set `REGEN = True` in [`04_correlated_calibration.ipynb`](notebooks/04_correlated_calibration.ipynb):* confirm your freshly-regenerated `calibration_chemistry.json` matches the deposited SHA before quoting numbers downstream. (If it doesn't, you've drifted from the deposit and the manuscript's quoted values may not apply to your output.)
+- *CI gate in a derived pipeline:* the script's exit code is wired for any runner. Drop into GitHub Actions as `- run: python3 tools/check_integrity.py`; the run fails loudly with per-file detail on any tampering.
+- *Single-file partial check:* for a one-off verification, hash by hand and compare against the corresponding `sha256` entry in [`MANIFEST.json`](MANIFEST.json):
+
+  ```bash
+  sha256sum data/screen_sector_audit_r5.json
+  ```
 
 ## Local install (only if you want to dig deeper)
 
@@ -75,6 +86,7 @@ tests/                        pytest suite (39 tests at present)
 tests/mutation_check.py       optional: 10-mutation sanity check on the implementation
 data/                         five deposited JSON outputs + MANIFEST.json
 docs/claim_index.md           manuscript claim -> notebook + test + data file
+tools/check_integrity.py      stdlib-only SHA256 verifier (data integrity, no install)
 .github/workflows/            tests.yml, notebooks.yml
 ```
 
