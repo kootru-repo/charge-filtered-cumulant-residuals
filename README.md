@@ -10,9 +10,27 @@ Reproducibility repository for the manuscript:
 
 Every numerical claim in the manuscript reproduces in your browser, in about a minute per notebook, with no install. The algebraic theorems are proved in the paper itself; this repository is the operational reproducibility envelope.
 
-## Reproduce in your browser (recommended for referees)
+## Reproduce in your browser (no install required)
 
-Click any badge below. The notebook opens in Colab, finishes in about a minute on the free CPU tier, and ends with `assert` cells that pass when the manuscript claim it verifies is reproduced. If a notebook finishes without an `AssertionError`, every claim cited in that row reproduced bit-exactly under the deposited environment.
+Two browser-based options, both running on real Linux infrastructure.
+
+### Verify on Ubuntu Linux (GitHub Codespaces)
+
+<a href="https://codespaces.new/kootru-repo/charge-filtered-cumulant-residuals?quickstart=1"><img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces" width="200"/></a>
+
+One click opens an Ubuntu 22.04 / Debian Bookworm container with VS Code in your browser. The devcontainer's `postCreateCommand` ([.devcontainer/setup.sh](.devcontainer/setup.sh)) installs `uv`, syncs dev + notebook extras, and runs `tools/check_integrity.py` automatically. After ~60 seconds you get a full Linux shell:
+
+```bash
+uv run pytest                                  # 39 unit tests, ~2 minutes
+uv run python tools/check_integrity.py         # SHA256 verifier
+uv run jupyter lab --ip=0.0.0.0 --no-browser   # JupyterLab on port 8888 (auto-forwarded)
+```
+
+Same OS family as the `tests.yml` / `notebooks.yml` CI runners, so a green Codespace verification matches the experience of a fresh Linux user cloning the repo. Free for 60 hours per month on a personal GitHub account (120h with GitHub Pro).
+
+### Per-notebook (Google Colab)
+
+Click any badge in the table below. The notebook opens in Colab, finishes in about a minute on the free CPU tier, and ends with `assert` cells that pass when the manuscript claim it verifies is reproduced. If a notebook finishes without an `AssertionError`, every claim cited in that row reproduced bit-exactly under the deposited environment.
 
 | # | Notebook | What this notebook reproduces from the manuscript | Run |
 |---|---|---|---|
@@ -87,6 +105,7 @@ tests/mutation_check.py       optional: 10-mutation sanity check on the implemen
 data/                         five deposited JSON outputs + MANIFEST.json
 docs/claim_index.md           manuscript claim -> notebook + test + data file
 tools/check_integrity.py      stdlib-only SHA256 verifier (data integrity, no install)
+.devcontainer/                GitHub Codespaces + VS Code Dev Container config (Ubuntu)
 .github/workflows/            tests.yml, notebooks.yml
 ```
 
