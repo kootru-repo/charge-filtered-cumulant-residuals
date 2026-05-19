@@ -1,0 +1,31 @@
+{
+    "upload_type": "software",
+    "title": "charge-filtered-cumulant-residuals: reproducibility envelope for charge- and block-refined bias bounds on U(1)-invariant fermionic states",
+    "creators": [
+        {
+            "name": "Craton, Andrew",
+            "affiliation": "Kootru Labs",
+            "orcid": "0009-0001-2269-8599"
+        }
+    ],
+    "description": "Reproducibility repository for the manuscript 'Charge- and block-refined bias bounds for second-order cumulant truncation on U(1)-invariant fermionic states'. Contains claim-indexed audit notebooks, a pytest suite that asserts on every manuscript headline number, a SHA256-pinned data deposit (MANIFEST.json), and a headless-CI notebook workflow that reruns every notebook end-to-end on every push. Source code is MIT-licensed; deposited data and notebooks are CC-BY-4.0.",
+    "license": "MIT",
+    "keywords": [
+        "quantum-chemistry",
+        "cumulant-truncation",
+        "partition-lattice",
+        "fermionic-observables",
+        "U(1)-symmetry",
+        "classical-shadows",
+        "bias-certificate",
+        "reproducibility"
+    ],
+    "related_identifiers": [
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.20129665",
+            "relation": "isSupplementTo",
+            "resource_type": "publication-other"
+        }
+    ]
+}
